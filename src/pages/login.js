@@ -8,15 +8,15 @@ import { useState } from "react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase.config"
 
-export default function Login() {
+export default function Login(props) {
 
     const [show, setShow] = useState(false);
-    console.log(auth)
+    // console.log(props.user.photoURL)
+    // console.log(props.user.displayName)
     // const provider = new GoogleAuthProvider();
     // const handleLoginGoogle=()=>{
 
-
-
+// const signInGooglee
     const handleToggle = () => {
         setShow(!show)
     }
@@ -63,7 +63,7 @@ export default function Login() {
 
                     </div>
                     <div className="input-button ">
-                        <button className={styles.button_custom} type="button">
+                        <button onClick={props.signIn} className={styles.button_custom} type="button">
                             Sign in with Google<Image src={'./assets/google.svg'} width="20" height="20" alt="google"></Image>
                         </button>
                     </div>
