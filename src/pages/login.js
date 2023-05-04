@@ -3,14 +3,22 @@ import Layout from "../layout/layout";
 import Link from "next/link";
 import styles from "../styles/Form.module.css"
 import Image from "next/image";
-import { HiMail, HiFingerPrint} from "react-icons/hi";
+import { HiMail, HiFingerPrint } from "react-icons/hi";
 import { useState } from "react";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../firebase.config"
 
 export default function Login() {
 
-    const [show, setShow]=useState();
-    const handleToggle=()=>{
-    setShow(!show)
+    const [show, setShow] = useState(false);
+    console.log(auth)
+    // const provider = new GoogleAuthProvider();
+    // const handleLoginGoogle=()=>{
+
+
+
+    const handleToggle = () => {
+        setShow(!show)
     }
 
     return (
@@ -25,27 +33,27 @@ export default function Login() {
                 </div>
                 {/* form */}
                 <form className="flex flex-col gap-4">
-                <div className={styles.input_group}>
+                    <div className={styles.input_group}>
                         <input
                             type="email"
                             name="email"
                             placeholder="Email"
                             className={styles.input_text}
                         />
-                          <span className="icon flex items-center px-4">
-                            < HiMail size={25}/>
-                          </span>
+                        <span className="icon flex items-center px-4">
+                            < HiMail size={25} />
+                        </span>
                     </div>
                     <div className={styles.input_group}>
                         <input
-                            type={`${show ? "text":"password"}`}
+                            type={`${show ? "text" : "password"}`}
                             name="pasword"
                             placeholder="Pasword"
                             className={styles.input_text}
                         />
-                     <span className="icon flex items-center px-4" onClick={handleToggle}>
-                            <HiFingerPrint  size={25} />
-                          </span>
+                        <span className="icon flex items-center px-4" onClick={handleToggle}>
+                            <HiFingerPrint size={25} />
+                        </span>
                     </div>
                     {/* login button */}
                     <div className="input-button">
@@ -61,7 +69,7 @@ export default function Login() {
                     </div>
                     <div className="input-button ">
                         <button className={styles.button_custom} type="button">
-                            Sign in with Github<Image src={'./assets/github.svg'} width="25" height="25"alt="github" ></Image>
+                            Sign in with Github<Image src={'./assets/github.svg'} width="25" height="25" alt="github" ></Image>
                         </button>
                     </div>
 

@@ -1,5 +1,5 @@
 import styles from '../styles/Layout.module.css'
-
+import Image from "next/image";
 export default function Layout({ children }) {
 
   return (
@@ -7,7 +7,7 @@ export default function Layout({ children }) {
       <div className="m-auto bg-slate-50 rounded-md w-3/5 h-3/4 grid lg:grid-cols-2">
        {/* lef */}
         <div className={styles.imgStyle}>
-          <img className={styles.caartonImg}/>
+        <figure alt="bookNote" className={styles.caartonImg}></figure>
         </div>
         {/* rigth */}
         <div className="right flex flex-col justify-evenly bg-slate-50">
