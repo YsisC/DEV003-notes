@@ -8,7 +8,7 @@ import{getAuth}from 'firebase/auth'
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey:  "AIzaSyBOfzX400UYh7OpQWIX33CGKkOYleJyxeA",
-  // apiKey:  process.env.REACT_APP_FIREBASE_KEY,
+  // apiKey:  process.env.NEXT_PUBLIC_FIREBASE_PUBLIC_API_KEY,
   authDomain: "labnote-fb63c.firebaseapp.com",
   projectId: "labnote-fb63c",
   storageBucket: "labnote-fb63c.appspot.com",
@@ -20,3 +20,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth= getAuth(app)
+// export default firebase;

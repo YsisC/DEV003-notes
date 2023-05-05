@@ -1,15 +1,9 @@
-.container {
-  padding: 0 2rem;
+.container{
+  @apply w-full h-full
 }
-
-.main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.header{
+ @apply m-auto px-3 py-2;
+ box-shadow: 0 0 2px 0 rgb(114, 114, 114);
 }
 
 .button{
@@ -20,19 +14,3 @@
   @apply bg-gradient-to-r from-gray-50 to-gray-100 border-pink-900 ;
   @apply text-gray-700 border;
 }
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
