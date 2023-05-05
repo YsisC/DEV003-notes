@@ -9,6 +9,8 @@ import { useAuth } from '../context/AuthUserContext';
 import Header from '../components/Header';
 import CreateArea from '../components/CreateArea';
 import Note from '../components/Note';
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from '../firebase.config';
 
 
 
@@ -36,7 +38,27 @@ export default function Home(props) {
       // console.log("note", prevValue)
       return [...prevValue, newNote]
     })
+
   }
+
+  const { addANewPost, getNotes } = useAuth();
+  const [todos, setTodos] = useState([]);
+ 
+  const fetchPost = async () => {
+     
+      await getDocs(collection(db , "notes"))
+          .then((querySnapshot)=>{               
+              const newData = querySnapshot.docs
+                  .map((doc) => ({...doc.data(), id:doc.id }));
+              setTodos(newData);                
+              console.log("todos", newData);
+          })
+     
+  }
+ 
+  useEffect(()=>{
+      fetchPost();
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -61,11 +83,14 @@ export default function Home(props) {
         )
         } */}
 
- 
+        {notes.map((note, index) => {
+
           <Note
-       
+
           />
-        
+        }
+        )
+        }
 
 
 

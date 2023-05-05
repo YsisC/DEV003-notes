@@ -78,6 +78,7 @@ export default function useFirebaseAuth() {
     today: new Date()
   });
   
+  const getNotes=()=> getDocs(collection(db, "notes"))
   // listen for Firebase state change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, authStateChanged)
@@ -94,7 +95,8 @@ export default function useFirebaseAuth() {
     createUserWithEmailAndPassword,
     signInWithGoogle,
     logOut,
-    addANewPost
+    addANewPost,
+    getNotes
   };
 
 

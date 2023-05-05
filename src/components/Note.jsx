@@ -5,22 +5,22 @@ import {MdDelete} from "react-icons/md";
 
 function Note({title, content}) {
   return (
-    //example with props
-    <div className={styles.note}>
-        <h1> Mi tituulo</h1>
-        <p>Esta es mi primera nota</p>
-
-        <button>
-              <MdDelete size={30}/> 
-              <></>
-         </button>
-    </div>
-
-    // //exaple with the template
+    // //example with props
     // <div className={styles.note}>
-    //     <h1> {title}</h1>
-    //     <p>{content}</p>
+    //     <h1> Mi tituulo</h1>
+    //     <p>Esta es mi primera nota</p>
+
+    //     <button>
+    //           <MdDelete size={30}/> 
+    //           <></>
+    //      </button>
     // </div>
+
+    //exaple with the template
+    <div className={styles.note}>
+        <h1> {title}</h1>
+        <p>{content}</p>
+    </div>
   )
 }
 

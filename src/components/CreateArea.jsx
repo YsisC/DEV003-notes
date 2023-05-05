@@ -6,7 +6,7 @@ import { useAuth } from '../context/AuthUserContext';
 
 function CreateArea() {
 
-    const { addANewPost } = useAuth();
+    const { addANewPost, } = useAuth();
     const [note, setNote] = useState({
         title: "",
         content: ""
@@ -14,7 +14,7 @@ function CreateArea() {
 
     function handleChange(e) {
         e.preventDefault()
-        const { name, value } = e.target
+        const { name, value } = e.target.value
         setNote(prevalue => {
             return {
                 ...prevalue,
@@ -25,18 +25,23 @@ function CreateArea() {
     function submitButton(event) {
         console.log(note)
         // onAdd(note)
+        event.preventDefault()
         addANewPost(note.title, note.content)
             .then(resp => {
               console.log("Document written with ID",resp) 
 
             })
-        event.preventDefault()
+            Form.reset();
+       
         // return note
 
     }
     return (
         <div>
-            <form className={styles.form}>
+            <form 
+            onSubmit={submitButton}
+            name='Form'
+            className={styles.form}>
                 <input
                     value={note.title}
                     type='text'
@@ -53,6 +58,7 @@ function CreateArea() {
                     </textarea>
                 </p>
                 <button
+                type='submit'
                     className={styles.button}
                     onClick={submitButton}><HiPlus /></button>
             </form>
