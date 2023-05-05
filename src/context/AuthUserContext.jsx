@@ -8,6 +8,7 @@ const authUserContext = createContext({
     signInWithEmailAndPassword: async () => { },
     signInWithGoogle: async () => { },
     createUserWithEmailAndPassword: async () => { },
+    addANewPost: async () => { },
     logOut: async () => { }
 });
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "../styles/Form.module.css"
 import Image from "next/image";
 import { HiMail, HiFingerPrint } from "react-icons/hi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from '../context/AuthUserContext';
 import { useRouter } from "next/router";
 
@@ -15,12 +15,16 @@ export default function Login(props) {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const router = useRouter();
-    const { signInWithEmailAndPassword, signInWithGoogle } = useAuth();
+    const { signInWithEmailAndPassword, loading, authUser, signInWithGoogle } = useAuth();
     // const signInGooglee
     const handleToggle = () => {
         setShow(!show)
     }
-
+    useEffect(() => {
+        if ( authUser)
+          router.push('/')
+      }, [authUser, loading])
+    
     // const onSubmit = event => {
     //     event.preventDefault();
     //     setError(null)
@@ -33,20 +37,21 @@ export default function Login(props) {
     //     });
 
     //   };
-
+// debugger;
     const signInGoogle = (e) => {
-    
+        e.preventDefault();
         signInWithGoogle()
-            .then(authUser => {
-                console.log(authUser);
-                // /login?email=&pasword=
-                router.push('/');
-            })
-            .catch(error => {
-                setError(error.message)
-            });
+      
+            // .then(authUser => {
+            //     console.log(authUser);
+            //     // /login?email=&pasword=
+            //     router.push('/');
+            // })
+            // .catch(error => {
+            //     setError(error.message)
+            // });
             
-            e.preventDefault();
+       
 
     }
     return (

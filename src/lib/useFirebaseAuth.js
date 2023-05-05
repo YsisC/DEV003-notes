@@ -1,9 +1,21 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 // import firebase from '../firebase.config';
-import { auth } from '../firebase.config'
+import { auth ,db} from '../firebase.config'
 import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
+import {
+  getFirestore,
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  deleteDoc,
+  updateDoc, 
+  
+} from 'firebase/firestore';
+
+
 
 
 const formatAuthUser = (user) => ({
@@ -36,7 +48,7 @@ export default function useFirebaseAuth() {
   const clear = () => {
     setAuthUser(null);
     setLoading(true);
-    router.push('/')
+    router.push('/login')
   };
 
   const signInWithEmailAndPassword = (email, password) =>
@@ -44,16 +56,28 @@ export default function useFirebaseAuth() {
 
   const createUserWithEmailAndPassword = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
-
+// debugger;
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
+    signInWithRedirect(auth, provider)
+    // .then(authUser => {
+    //       console.log(authUser);
+    //       // setAuthUser(authUser);
+    //       // setLoading(false);
+    //       // /login?email=&pasword=
+    //       router.push('/');
+    //   })
   }
 
   const logOut = () => {
     signOut(auth).then(clear);
   }
-
+ const addANewPost = (title, content) => addDoc(collection(db, 'notes'), {
+    title,
+    content,
+    today: new Date()
+  });
+  
   // listen for Firebase state change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, authStateChanged)
@@ -69,7 +93,8 @@ export default function useFirebaseAuth() {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     signInWithGoogle,
-    logOut
+    logOut,
+    addANewPost
   };
 
 

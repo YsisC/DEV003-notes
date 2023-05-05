@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import styles from '../styles/Home.module.css'
-import {HiPlus } from "react-icons/hi";
+import { HiPlus } from "react-icons/hi";
+import { useAuth } from '../context/AuthUserContext';
 
 
 function CreateArea() {
+
+    const { addANewPost } = useAuth();
     const [note, setNote] = useState({
         title: "",
         content: ""
@@ -20,8 +23,13 @@ function CreateArea() {
         })
     }
     function submitButton(event) {
-    console.log(note)
-    // onAdd(note)
+        console.log(note)
+        // onAdd(note)
+        addANewPost(note.title, note.content)
+            .then(resp => {
+              console.log("Document written with ID",resp) 
+
+            })
         event.preventDefault()
         // return note
 
