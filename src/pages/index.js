@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import WithPrivateRoute from './components/WithPrivateRoute'
 
-export default function Home() {
+export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
@@ -12,8 +13,12 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+      <button onClick={props.logOut} className={styles.button} type="button">
+                          Log out 
+                        </button>
         <h1 class="text-3xl font-bold underline">
           Hello world!
+
         </h1>
 
 
@@ -24,3 +29,5 @@ export default function Home() {
     </div>
   )
 }
+
+// Home.Auth = WithPrivateRoute
