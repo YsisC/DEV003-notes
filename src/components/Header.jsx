@@ -7,7 +7,8 @@ import { useAuth } from '../context/AuthUserContext';
 
 function Header(props) {
   const {  logOut } = useAuth();
-  const signOut = () => {
+  const signOut = (i) => {
+    i.preventDefault()
     logOut()
     // if ( authUser === null)
       // router.push('/login')
@@ -16,7 +17,7 @@ function Header(props) {
   return (
     <div className={styles.header} >
         {logo}<h3>Lab Note</h3>
-        <button onClick={signOut} className={styles.button} type="button">
+        <button onClick={signOut} className={styles.button_logOut} type="button">
           Log out
         </button>
         </div>

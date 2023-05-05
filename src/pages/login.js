@@ -40,7 +40,7 @@ export default function Login(props) {
             .then(authUser => {
                 console.log(authUser);
                 // /login?email=&pasword=
-                router.push('/register');
+                router.push('/');
             })
             .catch(error => {
                 setError(error.message)
