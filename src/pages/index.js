@@ -1,5 +1,4 @@
 import Head from 'next/head'
-
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
@@ -8,6 +7,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthUserContext';
 import Header from '../components/Header';
+import CreateArea from '../components/CreateArea';
 export default function Home(props) {
 
   //test autContext 2
@@ -22,11 +22,7 @@ export default function Home(props) {
   }, [authUser, loading])
 
 
-  const signOut = () => {
-    logOut()
-    // if ( authUser === null)
-      // router.push('/login')
-  }
+ 
   // /show userData
   console.log(authUser)
 
@@ -42,10 +38,8 @@ export default function Home(props) {
       <main
       //  className={styles.main}
        >
+      <CreateArea/>
       
-        <button onClick={signOut} className={styles.button} type="button">
-          Log out
-        </button>
         <h1 className="text-3xl font-bold underline">
           Hello world!
 
