@@ -37,20 +37,11 @@ export default function Login(props) {
     //     });
 
     //   };
+
 // debugger;
-    const signInGoogle = (e) => {
-        e.preventDefault();
+    const signInGoogle = () => {
+        // e.preventDefault();
         signInWithGoogle()
-      
-            // .then(authUser => {
-            //     console.log(authUser);
-            //     // /login?email=&pasword=
-            //     router.push('/');
-            // })
-            // .catch(error => {
-            //     setError(error.message)
-            // });
-            
        
 
     }
@@ -112,11 +103,6 @@ export default function Login(props) {
                         Sign in with Google<Image src={'./assets/google.svg'} width="20" height="20" alt="google"></Image>
                     </button>
                 </div>
-                {/* <div className="input-button ">
-                        <button className={styles.button_custom} type="button">
-                            Sign in with Github<Image src={'./assets/github.svg'} width="25" height="25" alt="github" ></Image>
-                        </button>
-                    </div> */}
 
                 {/* bottom */}
                 <p className="text-center text-gray-600">

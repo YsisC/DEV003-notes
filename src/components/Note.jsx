@@ -20,6 +20,11 @@ function Note({title, content}) {
     <div className={styles.note}>
         <h1> {title}</h1>
         <p>{content}</p>
+        <button>
+              <MdDelete size={30}/> 
+           
+       </button>
+
     </div>
   )
 }

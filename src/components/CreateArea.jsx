@@ -14,7 +14,7 @@ function CreateArea() {
 
     function handleChange(e) {
         e.preventDefault()
-        const { name, value } = e.target.value
+        const { name, value } = e.target
         setNote(prevalue => {
             return {
                 ...prevalue,
@@ -22,25 +22,33 @@ function CreateArea() {
             }
         })
     }
-    function submitButton(event) {
-        console.log(note)
+  const submitButton=(event)=> {
+            console.log(note)
         // onAdd(note)
         event.preventDefault()
+    
+        const { title, content } =note
+
+        if(title.length===0 && content.length===0)return;
         addANewPost(note.title, note.content)
             .then(resp => {
-              console.log("Document written with ID",resp) 
+              console.log("Document written with ID",resp.id) 
 
             })
-            Form.reset();
-       
+            // Form.reset();
+            // setNote(
+
+            // )
         // return note
 
     }
+
+    
     return (
-        <div>
+         <div>
             <form 
             onSubmit={submitButton}
-            name='Form'
+            // name='Form'
             className={styles.form}>
                 <input
                     value={note.title}
@@ -49,6 +57,7 @@ function CreateArea() {
                     name="title"
                     onChange={handleChange}
                 ></input>
+             
                 <p>
                     <textarea
                         value={note.content}
@@ -62,8 +71,8 @@ function CreateArea() {
                     className={styles.button}
                     onClick={submitButton}><HiPlus /></button>
             </form>
-        </div>
-    )
+            
+        </div>    )
 }
 
 export default CreateArea

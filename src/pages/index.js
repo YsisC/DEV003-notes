@@ -42,22 +42,22 @@ export default function Home(props) {
   }
 
   const { addANewPost, getNotes } = useAuth();
-  const [todos, setTodos] = useState([]);
- 
+  const [noteList, setNoteList] = useState([]);
+
   const fetchPost = async () => {
-     
-      await getDocs(collection(db , "notes"))
-          .then((querySnapshot)=>{               
-              const newData = querySnapshot.docs
-                  .map((doc) => ({...doc.data(), id:doc.id }));
-              setTodos(newData);                
-              console.log("todos", newData);
-          })
-     
+
+    await getDocs(collection(db, "notes"))
+      .then((querySnapshot) => {
+        const newData = querySnapshot.docs
+          .map((doc) => ({ ...doc.data(), id: doc.id }));
+        setNoteList(newData);
+        console.log("todos", newData);
+      })
+
   }
- 
-  useEffect(()=>{
-      fetchPost();
+
+  useEffect(() => {
+    fetchPost();
   }, [])
 
   return (
@@ -71,28 +71,21 @@ export default function Home(props) {
       <main
       //  className={styles.main}
       >
-        <CreateArea onAdd={addNote} />
-        {/* {notes.map((note, index) => {
-          <Note
-            key={index}
-            id={index}
-            title={note.title}
-            content={note.content}
-          />
-        }
-        )
-        } */}
-
-        {notes.map((note, index) => {
-
-          <Note
-
-          />
-        }
-        )
-        }
+         <CreateArea onAdd={addNote} /> 
 
 
+        {
+          noteList?.map((note, i) => (
+       
+            <Note
+              key={i}
+              id={i}
+              title={note.title}
+              content={note.content}
+            />
+          ))
+
+        } 
 
 
       </main>
