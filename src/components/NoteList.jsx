@@ -11,7 +11,6 @@ function NoteList({value}) {
   const [noteList, setNoteList] = useState([]);
 
     const fetchPost = async () => {
-
         const collectionRef = collection(db, value)
         const q = query(collectionRef, orderBy("date", "desc"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -23,7 +22,7 @@ function NoteList({value}) {
     
       useEffect(() => {
         fetchPost();
-      }, [])
+      }, []) //and not sure about this return [] item is gona bee empty or not
   return (
     <div>
         
