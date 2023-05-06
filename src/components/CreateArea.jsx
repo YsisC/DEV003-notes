@@ -30,7 +30,7 @@ function CreateArea() {
         const { title, content } =note
 
         if(title.length===0 && content.length===0)return;
-        addANewPost(note.title, note.content)
+        addANewPost(note.title, note.content,)
             .then(resp => {
               console.log("Document written with ID",resp.id) 
 
