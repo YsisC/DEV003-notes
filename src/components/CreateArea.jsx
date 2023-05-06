@@ -22,7 +22,7 @@ function CreateArea() {
             }
         })
     }
-  const submitButton=(event)=> {
+  const submitButton= async (event)=> {
             console.log(note)
         // onAdd(note)
         event.preventDefault()
@@ -36,9 +36,11 @@ function CreateArea() {
 
             })
             // Form.reset();
-            // setNote(
-
-            // )
+            setNote({
+                title: "",
+                content: ""
+            }
+            )
         // return note
 
     }

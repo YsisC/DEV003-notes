@@ -60,6 +60,10 @@ export default function Home(props) {
     fetchPost();
   }, [])
 
+
+
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -71,7 +75,7 @@ export default function Home(props) {
       <main
       //  className={styles.main}
       >
-         <CreateArea onAdd={addNote} /> 
+         <CreateArea onAdd={addNote} fetchPost={fetchPost}/> 
 
 
         {

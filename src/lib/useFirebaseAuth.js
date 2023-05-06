@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 // import firebase from '../firebase.config';
-import { auth ,db} from '../firebase.config'
+import { auth, db } from '../firebase.config'
 import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import {
@@ -11,8 +11,8 @@ import {
   doc,
   getDoc,
   deleteDoc,
-  updateDoc, 
-  
+  updateDoc,
+
 } from 'firebase/firestore';
 
 
@@ -56,7 +56,7 @@ export default function useFirebaseAuth() {
 
   const createUserWithEmailAndPassword = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
-// debugger;
+  // debugger;
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithRedirect(auth, provider)
@@ -72,13 +72,23 @@ export default function useFirebaseAuth() {
   const logOut = () => {
     signOut(auth).then(clear);
   }
- const addANewPost = (title, content) => addDoc(collection(db, 'notes'), {
+  const addANewPost = (title, content) => addDoc(collection(db, 'notes'), {
     title,
     content,
-    today: new Date()
+    date: new Date(),
+    user: authUser
   });
-  
-  const getNotes=()=> getDocs(collection(db, "notes"))
+
+  const getNotes = () => getDocs(collection(db, "notes"))
+
+
+
+    const onGetNotes = (callback) => {
+      const queryPost = query(collection(db, "notes"), orderBy('date', 'desc'));
+      onSnapshot(queryPost, callback);
+    };
+
+
   // listen for Firebase state change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, authStateChanged)
@@ -96,7 +106,8 @@ export default function useFirebaseAuth() {
     signInWithGoogle,
     logOut,
     addANewPost,
-    getNotes
+    getNotes,
+    onGetNotes
   };
 
 

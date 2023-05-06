@@ -11,6 +11,7 @@ const authUserContext = createContext({
     addANewPost: async () => { },
     logOut: async () => { },
     getNotes:  async () => { },
+    onGetNotes: async () => { },
 });
 
 export function AuthUserProvider({ children }) {
