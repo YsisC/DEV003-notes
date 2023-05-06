@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-
 //test autContext 2
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -9,7 +8,7 @@ import { useAuth } from '../context/AuthUserContext';
 import Header from '../components/Header';
 import CreateArea from '../components/CreateArea';
 import Note from '../components/Note';
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import {onSnapshot, collection, orderBy, query,  addDoc, getDocs  } from "firebase/firestore";
 import { db } from '../firebase.config';
 
 
@@ -42,18 +41,18 @@ export default function Home(props) {
   }
 
   const { addANewPost, getNotes } = useAuth();
+  // const [todos, setTodos] = useState([])
   const [noteList, setNoteList] = useState([]);
+
+
 
   const fetchPost = async () => {
 
-    await getDocs(collection(db, "notes"))
-      .then((querySnapshot) => {
-        const newData = querySnapshot.docs
-          .map((doc) => ({ ...doc.data(), id: doc.id }));
-        setNoteList(newData);
-        console.log("todos", newData);
-      })
-
+    const collectionRef = collection(db, "notes")
+    const q = query(collectionRef, orderBy("date", "desc"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      setNoteList(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, timestamp: doc.data().timestamp?.toDate().getTime() })))
+  });
   }
 
   useEffect(() => {
