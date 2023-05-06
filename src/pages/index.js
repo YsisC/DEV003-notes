@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthUserContext';
 import Header from '../components/Header';
 import CreateArea from '../components/CreateArea';
 import NoteList from '../components/NoteList';
+import Footer from '../components/Footer';
 
 
 
@@ -54,7 +55,7 @@ export default function Home(props) {
 
       </main>
 
-
+<Footer></Footer>
     </div>
   )
 }

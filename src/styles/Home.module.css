@@ -40,7 +40,7 @@
 
 }
 
-.form  .button {
+.form .button {
   @apply flex justify-center items-center outline-none cursor-pointer;
   @apply bg-pink-800 text-white p-1 text-base border-none w-9 h-9;
   position: absolute;
@@ -61,28 +61,39 @@
 
 }
 
-.note {
-  @apply bg-white w-60 p-2 m-4 flex flex-col;
+.note_list {
+  @apply grid ;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit,minmax(250px, 1fr))
 
+}
+
+.note {
+  @apply bg-white w-60 p-2 flex flex-col justify-between;
+  /* min-height: 170px; */
   border-radius: 7px;
   box-shadow: 0 2px 5px rgb(175, 175, 175);
   float: lef;
 }
 
-.note h1{
-  @apply text-base mb-1;
+.note h1 {
+  @apply text-lg mb-1;
 
 }
 
 .note p {
   @apply text-base mb-2;
+  font-weight: 100;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
+.note_footer {
+  @apply flex items-center justify-between;
+}
+
 .note button {
-  @apply text-pink-800 cursor-pointer self-end outline-none border-none;
-   /* position: relative; */
+  @apply text-pink-800 cursor-pointer outline-none border-none;
+  /* position: relative; */
 
 }
- 

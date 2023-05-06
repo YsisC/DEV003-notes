@@ -3,6 +3,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import Note from "./Note";
 import { db } from '../firebase.config';
+import styles from '../styles/Home.module.css'
 
 
 
@@ -14,7 +15,7 @@ function NoteList({value}) {
         const collectionRef = collection(db, value)
         const q = query(collectionRef, orderBy("date", "desc"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
-          setNoteList(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, timestamp: doc.data().timestamp?.toDate().getTime() })))
+          setNoteList(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, date: doc.data().date?.toDate().getTime() })))
      
         });
         return unsubscribe;
@@ -24,7 +25,7 @@ function NoteList({value}) {
         fetchPost();
       }, []) //and not sure about this return [] item is gona bee empty or not
   return (
-    <div>
+    <div className={styles.note_list}>
         
         {
           noteList?.map((note, i) => (
@@ -34,6 +35,7 @@ function NoteList({value}) {
               id={i}
               title={note.title}
               content={note.content}
+              displayName={note.user.displayName}
             />
           ))
 

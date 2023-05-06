@@ -67,6 +67,7 @@ const [isExpanded, setIsExpanded]= useState(false)
                         value={note.content}
                         name='content'
                         onChange={handleChange}
+                        rows={isExpanded?3:1}
                         placeholder='Take a note....' >
                     </textarea>
                 </p>
