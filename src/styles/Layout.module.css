@@ -25,11 +25,12 @@
 
 @media (min-width:1024px ){
     .wraper{
+      
         grid-template-columns: repeat(2, 2fr);
     }
     }
-/* @media (max-width:520px ){
+@media (max-width:520px ){ 
     .wraper{
-        grid-template-columns: repeat(1, 2fr);
+        @apply w-full h-full;
     }
-    } */
+    }

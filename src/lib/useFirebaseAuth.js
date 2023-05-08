@@ -20,8 +20,6 @@ import {
 
 
 
-
-
 const formatAuthUser = (user) => ({
   uid: user.uid,
   email: user.email,
