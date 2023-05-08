@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Layout from "../layout/layout";
 import styles from '../styles/Form.module.css'
-import { HiMail, HiFingerPrint } from "react-icons/hi";
+import { HiMail, HiFingerPrint, HiUser } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -38,7 +38,7 @@ export default function Register(){
                         className={styles.input_text}
                     />
                     <span className="icon flex items-center px-4">
-                        < HiMail size={25} />
+                        < HiUser size={25} />
                     </span>
                 </div>
                 <div className={styles.input_group}>
