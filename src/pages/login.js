@@ -31,13 +31,7 @@ export default function Login(props) {
     const signInGoogle = () => {
         // e.preventDefault();
         signInWithGoogle()
-        .then(auth=>{
-          console.log(auth);
-        })
-       .finally(
-        router.push('/')
-       )
-
+      
     }
     return (
         <Layout>

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 // import firebase from '../firebase.config';
-import { auth, db } from '../firebase.config'
-import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, signOut } from 'firebase/auth';
+import { auth, db,  } from '../firebase.config'
+import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect,  signInWithPopup,signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import {
   getFirestore,
@@ -11,7 +11,10 @@ import {
   doc,
   getDoc,
   deleteDoc,
+  where ,
+  query,
   updateDoc,
+  getDocs
 
 } from 'firebase/firestore';
 
@@ -57,11 +60,33 @@ export default function useFirebaseAuth() {
   const createUserWithEmailAndPassword = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
   // debugger;
-  const signInWithGoogle = () => {
+  // const signInWithGoogle = () => {
+  // 
+  //   signInWithRedirect(auth, provider)
+
+  // }
+
+  const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider)
- 
-  }
+    try {
+      const res = await signInWithPopup(auth, provider);
+      const user = res.user;
+      const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      const docs = await getDocs(q);
+      if (docs.docs.length === 0) {
+        await addDoc(collection(db, "users"), {
+          uid: user.uid,
+          name: user.displayName,
+          authProvider: "google",
+          email: user.email,
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
+
 
   const logOut = () => {
     signOut(auth).then(clear);
@@ -75,12 +100,12 @@ export default function useFirebaseAuth() {
 
   const getNotes = () => getDocs(collection(db, "notes"))
 
- const currentUserInfo = () => auth.currentUser;
+  const currentUserInfo = () => auth.currentUser;
 
-    const onGetNotes = (callback) => {
-      const queryPost = query(collection(db, "notes"), orderBy('date', 'desc'));
-      onSnapshot(queryPost, callback);
-    };
+  const onGetNotes = (callback) => {
+    const queryPost = query(collection(db, "notes"), orderBy('date', 'desc'));
+    onSnapshot(queryPost, callback);
+  };
 
 
   // listen for Firebase state change
