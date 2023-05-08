@@ -29,10 +29,10 @@ const [isExpanded, setIsExpanded]= useState(false)
   const submitButton= async (event)=> {
 
         event.preventDefault()
-        const { title, content } =note
+        const { title, content } = note;
 
         if(title.length===0 && content.length===0)return;
-        addANewPost(note.title, note.content,)
+        addANewPost(title, content)
             .then(resp => {
               console.log("Document written with ID",resp.id) 
 

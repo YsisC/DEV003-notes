@@ -1,3 +1,8 @@
+.wraper {
+    @apply  bg-slate-50 rounded-md w-3/5  h-3/4  grid ;
+     /* m-auto bg-slate-50 rounded-md w-3/5grid lg:grid-cols-2s */
+}
+
 .imgStyle {
     @apply bg-white;
     position: relative;
@@ -17,3 +22,14 @@
     background-position: 65%;
     z-index: 1;
 }
+
+@media (min-width:1024px ){
+    .wraper{
+        grid-template-columns: repeat(2, 2fr);
+    }
+    }
+/* @media (max-width:520px ){
+    .wraper{
+        grid-template-columns: repeat(1, 2fr);
+    }
+    } */

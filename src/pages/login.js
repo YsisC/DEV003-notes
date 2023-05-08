@@ -22,7 +22,7 @@ export default function Login(props) {
     }
     useEffect(() => {
         if ( authUser)
-          router.push('/')
+          router.push("/")
       }, [authUser, loading])
     
     // const onSubmit = event => {
@@ -106,7 +106,7 @@ export default function Login(props) {
 
                 {/* bottom */}
                 <p className="text-center text-gray-600">
-                    Don't have an account yet? <Link legacyBehavior href={'/register'}><a className="text-pink-700">Sign Up</a></Link>
+                    Don&apos;t have an account yet? <Link legacyBehavior href={'/register'}><a className="text-pink-700">Sign Up</a></Link>
                 </p>
             </section>
         </Layout>

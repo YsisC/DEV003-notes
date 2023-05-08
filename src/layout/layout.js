@@ -3,11 +3,11 @@ import Image from "next/image";
 export default function Layout({ children }) {
 
   return (
-    <div className="flex h-screen bg-gray-300">
-      <div className="m-auto bg-slate-50 rounded-md w-3/5 h-3/4 grid lg:grid-cols-2">
+    <div className="flex items-center justify-center h-screen w-screen bg-gray-300">
+      <div className={styles.wraper}>
        {/* lef */}
         <div className={styles.imgStyle}>
-        <figure alt="bookNote" className={styles.caartonImg}></figure>
+        <div alt="bookNote" className={ styles.caartonImg }></div>
         </div>
         {/* rigth */}
         <div className="right flex flex-col justify-evenly bg-slate-50">
