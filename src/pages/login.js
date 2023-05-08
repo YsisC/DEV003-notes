@@ -23,7 +23,7 @@ export default function Login(props) {
     useEffect(() => {
         if ( authUser)
           router.push('/')
-      }, [authUser, loading])
+      }, [authUser, loading, router])
     
 
 
@@ -31,12 +31,7 @@ export default function Login(props) {
     const signInGoogle = () => {
         // e.preventDefault();
         signInWithGoogle()
-        .then(auth=>{
-          console.log(auth);
-        })
-       .finally(
-        router.push('/')
-       )
+       
 
     }
     return (
