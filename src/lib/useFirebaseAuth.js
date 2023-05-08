@@ -60,13 +60,7 @@ export default function useFirebaseAuth() {
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithRedirect(auth, provider)
-    // .then(authUser => {
-    //       console.log(authUser);
-    //       // setAuthUser(authUser);
-    //       // setLoading(false);
-    //       // /login?email=&pasword=
-    //       router.push('/');
-    //   })
+ 
   }
 
   const logOut = () => {

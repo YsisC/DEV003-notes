@@ -22,27 +22,21 @@ export default function Login(props) {
     }
     useEffect(() => {
         if ( authUser)
-          router.push("/")
-      }, [authUser, loading, router])
+          router.push('/')
+      }, [authUser, loading])
     
-    // const onSubmit = event => {
-    //     event.preventDefault();
-    //     setError(null)
-    //     signInWithEmailAndPassword(email, password)
-    //     .then(authUser => {
-    //       router.push('/');
-    //     })
-    //     .catch(error => {
-    //       setError(error.message)
-    //     });
 
-    //   };
 
 // debugger;
     const signInGoogle = () => {
         // e.preventDefault();
         signInWithGoogle()
-       
+        .then(auth=>{
+          console.log(auth);
+        })
+       .finally(
+        router.push('/')
+       )
 
     }
     return (
@@ -106,7 +100,7 @@ export default function Login(props) {
 
                 {/* bottom */}
                 <p className="text-center text-gray-600">
-                    Don&apos;t have an account yet? <Link legacyBehavior href={'/register'}><a className="text-pink-700">Sign Up</a></Link>
+                    Don't have an account yet? <Link legacyBehavior href={'/register'}><a className="text-pink-700">Sign Up</a></Link>
                 </p>
             </section>
         </Layout>
