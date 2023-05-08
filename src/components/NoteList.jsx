@@ -11,17 +11,18 @@ function NoteList({value}) {
       // const [todos, setTodos] = useState([])
   const [noteList, setNoteList] = useState([]);
 
-    const fetchPost = async () => {
-        const collectionRef = collection(db, value)
-        const q = query(collectionRef, orderBy("date", "desc"));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-          setNoteList(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, date: doc.data().date?.toDate().getTime() })))
-     
-        });
-        return unsubscribe;
-      }
+   
     
       useEffect(() => {
+        const fetchPost = async () => {
+          const collectionRef = collection(db, value)
+          const q = query(collectionRef, orderBy("date", "desc"));
+          const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            setNoteList(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, date: doc.data().date?.toDate().getTime() })))
+       
+          });
+          return unsubscribe;
+        }
         fetchPost();
       }, []) //and not sure about this return [] item is gona bee empty or not
   return (
