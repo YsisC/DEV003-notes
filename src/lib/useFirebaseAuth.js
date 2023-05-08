@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 // import firebase from '../firebase.config';
-import { auth, db } from '../firebase.config'
-import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, signOut } from 'firebase/auth';
+import { auth, db,  } from '../firebase.config'
+import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect,  signInWithPopup,signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import {
   getFirestore,
@@ -11,9 +11,13 @@ import {
   doc,
   getDoc,
   deleteDoc,
+  where ,
+  query,
   updateDoc,
+  getDocs
 
 } from 'firebase/firestore';
+
 
 
 
@@ -54,14 +58,42 @@ export default function useFirebaseAuth() {
   const signInWithEmailAndPassword = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 
-  const createUserWithEmailAndPassword = (email, password) =>
-    createUserWithEmailAndPassword(auth, email, password);
+    const createUserWithEmailAndPassword = async (name, email, password) => {
+      try {
+        const res = await createUserWithEmailAndPassword(auth, email, password);
+        const user = res.user;
+        await addDoc(collection(db, "users"), {
+          uid: user.uid,
+          name,
+          authProvider: "local",
+          email,
+        });
+      } catch (err) {
+        console.error(err);
+        alert(err.message);
+      }
+    };
   // debugger;
-  const signInWithGoogle = () => {
+  const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider)
- 
-  }
+    try {
+      const res = await signInWithPopup(auth, provider);
+      const user = res.user;
+      const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      const docs = await getDocs(q);
+      if (docs.docs.length === 0) {
+        await addDoc(collection(db, "users"), {
+          uid: user.uid,
+          name: user.displayName,
+          authProvider: "google",
+          email: user.email,
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
 
   const logOut = () => {
     signOut(auth).then(clear);
