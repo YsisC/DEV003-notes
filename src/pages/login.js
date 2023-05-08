@@ -23,7 +23,7 @@ export default function Login(props) {
     useEffect(() => {
         if ( authUser)
           router.push("/")
-      }, [authUser, loading])
+      }, [authUser, loading, router])
     
     // const onSubmit = event => {
     //     event.preventDefault();
