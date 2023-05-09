@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from "../layout/layout";
+import Layout from "../layouts/layout";
 import styles from '../styles/Form.module.css'
 import { HiMail, HiFingerPrint, HiUser } from "react-icons/hi";
 import Image from "next/image";

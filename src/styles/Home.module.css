@@ -2,16 +2,6 @@
   @apply w-full h-full
 }
 
-.header {
-  @apply m-auto px-3 py-2 flex flex-row items-center;
-  box-shadow: 0 0 2px 0 rgb(114, 114, 114);
-  align-self: center;
-}
-
-.header h3 {
-  @apply text-slate-800 ml-2;
-}
-
 .form {
   @apply mx-auto my-4 p-2 bg-white;
   position: relative;
@@ -34,11 +24,7 @@
   resize: none;
 }
 
-.button_logOut {
-  @apply w-20 h-7 bg-pink-800 text-gray-50 text-base;
-  border-radius: 0.5rem;
 
-}
 
 .form .button {
   @apply flex justify-center items-center outline-none cursor-pointer;
@@ -71,7 +57,7 @@
 
 .note {
   @apply bg-white w-60 p-2 flex flex-col justify-between;
-  /* min-height: 170px; */
+  min-height: 170px;
   border-radius: 7px;
   box-shadow: 0 2px 5px rgb(175, 175, 175);
   float: lef;

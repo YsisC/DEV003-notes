@@ -1,0 +1,25 @@
+.header {
+    @apply m-auto px-3 py-2 flex flex-row items-center justify-between;
+    box-shadow: 0 0 2px 0 rgb(114, 114, 114);
+    align-self: center;
+  }
+  
+  .header h3 {
+    @apply text-slate-800 ml-1;
+  }
+  .button_logOut {
+    @apply w-20 h-7 bg-pink-800 text-gray-50 text-base;
+    border-radius: 0.5rem;
+  
+  }
+  .input_group{
+    @apply flex border rounded-xl bg-slate-50 items-center p-1;
+    position: relative;
+}
+.input_text{
+    @apply w-full py-3 px-5 border rounded-xl bg-slate-50;
+    @apply focus:outline-none border-none;
+}
+.input_text +*{
+    @apply text-slate-200
+}
