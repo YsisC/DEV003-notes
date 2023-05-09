@@ -5,15 +5,25 @@ import { HiMail, HiFingerPrint, HiUser } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useAuth } from '../context/AuthUserContext';
 
 
 export default function Register(){
     const [show, setShow] = useState(false);
-    // console.log(props.user.photoURL)
-    // console.log(props.user.displayName)
-    // const provider = new GoogleAuthProvider();
-    // const handleLoginGoogle=()=>{
+    const { createUserWithEmailAndPassword} = useAuth();
+    const [userR, setUserR] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
+
+const signUp =(i)=>{
+    i.preventDefault()
+    // const { userR, email, password} = userRegister;
+    if(userR===undefined || email.length===0 && password.length===0)return;
+    console.log("user",userR);
+    console.log("email",email, "pass", password);
+    createUserWithEmailAndPassword(userR,email, password)
+}
 // const signInGooglee
     const handleToggle = () => {
         setShow(!show)
@@ -29,13 +39,15 @@ export default function Register(){
                 <p>Las notas son divertidas y necesarias</p>
             </div>
             {/* form */}
-            <form className="flex flex-col gap-4">
+            <form 
+             onSubmit={signUp}
+            className="flex flex-col gap-4">
                 <div className={styles.input_group}>
                     <input
                         type="text"
-                        name="user"
                         placeholder="User"
                         className={styles.input_text}
+                        onChange={(event) => setUserR(event.target.value)}
                     />
                     <span className="icon flex items-center px-4">
                         < HiUser size={25} />
@@ -44,9 +56,9 @@ export default function Register(){
                 <div className={styles.input_group}>
                     <input
                         type="email"
-                        name="email"
                         placeholder="Email"
                         className={styles.input_text}
+                        onChange={(event) => setEmail(event.target.value)}
                     />
                     <span className="icon flex items-center px-4">
                         < HiMail size={25} />
@@ -55,9 +67,9 @@ export default function Register(){
                 <div className={styles.input_group}>
                     <input
                         type={`${show ? "text" : "password"}`}
-                        name="pasword"
-                        placeholder="Pasword"
+                        placeholder="Password"
                         className={styles.input_text}
+                        onChange={(event) => setPassword(event.target.value)}
                     />
                     <span className="icon flex items-center px-4" onClick={handleToggle}>
                         <HiFingerPrint size={25} />
@@ -67,6 +79,7 @@ export default function Register(){
                 <div className="input-button">
                     <button
                         className={styles.button}
+                        // onClick={ signUp}
                         type="submit">Sign Up</button>
 
                 </div>

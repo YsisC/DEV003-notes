@@ -126,6 +126,7 @@ export default function useFirebaseAuth() {
     loading,
     loading,
     signInWithEmailAndPassword,
+    // createUserWithEmailAndPassword,
     createUserWithEmailAndPassword,
     signInWithGoogle,
     logOut,
