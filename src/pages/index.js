@@ -47,13 +47,19 @@ export default function Home(props) {
         <link rel="icon" href="https://raw.githubusercontent.com/YsisC/DEV003-notes/main/public/assets/logo.svg" />
       </Head>
       <Header/>
+      <div className='flex gap-6'>
+      <aside className='bg-slate-50 min-h-screen w-72'>  
+      <div className='py-3 flex justify-center'></div>
+      </aside>
       <main
-      //  className={styles.main}
       >
         <CreateArea   />
         <NoteList value="notes" />
 
       </main>
+      </div>
+     
+
 
 <Footer></Footer>
     </div>
