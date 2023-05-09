@@ -3,10 +3,9 @@
 }
 
 .form {
-  @apply mx-auto my-4 p-2 bg-white;
+  @apply mx-auto my-4 p-2 bg-white w-4/6;
   position: relative;
   margin-bottom: 20px;
-  width: 600px;
   border-radius: 0.4rem;
   /* border-radius: 7px; */
   box-shadow: 0 1px 7px rgb(128, 128, 128)
