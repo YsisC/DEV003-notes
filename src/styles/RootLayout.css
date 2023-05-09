@@ -1,9 +1,0 @@
-
-.link{
-    @apply p-2.5 flex rounded-md  gap-6 items-center md:cursor-pointer;
-    @apply cursor-default duratios-300 font-medium;
-}
-
-.active{
-    @apply  bg-blue-100 text-blue-600;
-}

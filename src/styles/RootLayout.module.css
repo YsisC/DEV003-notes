@@ -1,0 +1,9 @@
+
+.link{
+  @apply p-2 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium hover:bg-slate-300;
+    /* @apply p-2.5 flex rounded-md  gap-6 items-center md:cursor-pointer cursor-default duratios-300 font-medium; */
+}
+
+.active{
+    @apply bg-pink-100 text-gray-950;
+}
