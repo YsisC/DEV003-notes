@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 // import firebase from '../firebase.config';
 import { auth, db, } from '../firebase.config'
-import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import {
   getFirestore,
@@ -70,6 +70,12 @@ export default function useFirebaseAuth() {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = res.user;
+      if(name!==""){
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        });
+      }
+      
       await addDoc(collection(db, "users"), {
         uid: user.uid,
         name,
