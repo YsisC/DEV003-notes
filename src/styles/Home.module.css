@@ -47,14 +47,14 @@
 }
 
 .note_list {
-  @apply grid ;
+  @apply grid  max-[767px]:px-2 items-center justify-center px-3 ;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit,minmax(250px, 1fr))
+  grid-template-columns: repeat(auto-fit,minmax(15rem, 1fr))
 
 }
 
 .note {
-  @apply bg-white w-60 p-2 flex flex-col justify-between;
+  @apply bg-white p-2 flex flex-col justify-between;
   min-height: 170px;
   border-radius: 7px;
   box-shadow: 0 2px 5px rgb(175, 175, 175);
