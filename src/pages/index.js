@@ -52,6 +52,7 @@ export default function Home(props) {
       <RootLayout>
         <CreateArea />
         <NoteList value="notes" />
+        {/* <NoteList value="cats" /> */}
       </RootLayout>
 
       <Footer></Footer>

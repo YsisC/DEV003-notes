@@ -33,7 +33,7 @@ h1 {
   display: flex;
   padding: 0.625rem;
   border-radius: 0.375rem;
-  gap: 1.5 rem;
+  gap: 1.5rem;
   cursor: default;
   align-items: center;
   transition-duration: 300ms;
@@ -53,5 +53,12 @@ h1 {
 @media (min-width: 768px) {
   .link {
     cursor: pointer;
+
+  }
+}
+@media(max-width: 568px){
+  .link {
+   z-index: 999;
+  gap: 1.2rem;
   }
 }

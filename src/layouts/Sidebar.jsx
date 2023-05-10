@@ -37,36 +37,38 @@ export default function Sidebar({ isOpen }) {
         <motion.div
             variants={SideBar_animation}
             animate={isOpen ? 'open' : 'closed'}
-            className=' bg-white text-gray  z-[90] max-w-[16rem]
-    h-screen overflow-hidden relative shadow-xl top-0.5 '
+            className=' bg-white text-gray  z-[999] w-[16rem] max-w-[16rem]
+    h-screen overflow-hidden md:relative fixed shadow-xl md:top-1'
         >
             {/* Menus */}
             <div className='flex flex-col h-full'>
+                {/* Cerrar */}
+
                 {/* first */}
                 <ul className='whitespace-pre px-2.5 text-[0.9rem] py-5 flex flex-col gap-1 font-medium overflow-x-hidden'>
                     <li>
                         <Link href='/home' className={router.pathname == "/home" ? "link active" : "link"}>
-                            < GoLightBulb /> Notas
+                            < GoLightBulb size={23} className='min-w-max' /> Notas
                         </Link>
                     </li>
                     <li>
                         <Link href={'/reminders'} className={router.pathname == "/reminders" ? "link active" : "link"} >
-                            <AiOutlineBell /> Recordatorios
+                            <AiOutlineBell size={23}  className='min-w-max' /> Recordatorios
                         </Link>
                     </li>
                     <li>
                         <Link href={'/reminders'} className={router.pathname == "/reminders" ? "link active" : "link"} >
-                            <CiBookmarkRemove /> Home
+                            <CiBookmarkRemove size={23} className='min-w-max' /> Home
                         </Link>
                     </li>
                     <li>
                         <Link href={'/reminders'} className={router.pathname == "/reminders" ? "link active" : "link"}>
-                            < BsPencilFill /> Editar Etiquetas
+                            < BsPencilFill size={23} className='min-w-max'/> Editar Etiquetas
                         </Link>
                     </li>
                     <li>
                         <Link href={'/archive'} className={router.pathname == "/archive" ? "link active" : "link"}>
-                            <HiOutlineFolderOpen /> Archivar
+                            <HiOutlineFolderOpen size={23} className='min-w-max' /> Archivar
                         </Link>
                     </li>
                 </ul>

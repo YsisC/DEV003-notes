@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
             <Header toogleMenu={toogleMenu} />
             <div className='flex gap-6'>
                 <Sidebar isOpen={isOpen}  />
-                <main className='max-w-5xl flex-1 mx-auto py-4'>
+                <main className='max-w-5xl flex-1 z-0 mx-auto py-4'>
                     {children}
                 </main>
             </div>

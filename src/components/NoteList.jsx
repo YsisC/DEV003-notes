@@ -29,7 +29,7 @@ function NoteList({ value }) {
 
 
     // db.collection(value)
-    // .orderBy("date", "desc")
+    // s.orderBy("date", "desc")
     // .onSnapshot((snapshots) => {
     //   setNoteList(snapshots.docs.map((doc) => {...doc.data(), id: doc.id}));
     // });
