@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 // import firebase from '../firebase.config';
-import { auth, db,  } from '../firebase.config'
-import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect,  signInWithPopup,signOut } from 'firebase/auth';
+import { auth, db, } from '../firebase.config'
+import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import {
   getFirestore,
@@ -11,7 +11,7 @@ import {
   doc,
   getDoc,
   deleteDoc,
-  where ,
+  where,
   query,
   updateDoc,
   getDocs
@@ -53,24 +53,34 @@ export default function useFirebaseAuth() {
     router.push('/login')
   };
 
-  const signInWithEmailAndPassword = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password);
+  const signIn = (email, password) =>
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(userCredential)
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      })
 
-    const createUserWithEmailAndPassword = async (name, email, password) => {
-      try {
-        const res = await createUserWithEmailAndPassword(auth, email, password);
-        const user = res.user;
-        await addDoc(collection(db, "users"), {
-          uid: user.uid,
-          name,
-          authProvider: "local",
-          email,
-        });
-      } catch (err) {
-        console.error(err);
-        alert(err.message);
-      }
-    };
+  const createUserWithEmail = async (name, email, password) => {
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const user = res.user;
+      await addDoc(collection(db, "users"), {
+        uid: user.uid,
+        name,
+        authProvider: "local",
+        email,
+      });
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
   // debugger;
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
@@ -105,12 +115,12 @@ export default function useFirebaseAuth() {
 
   const getNotes = () => getDocs(collection(db, "notes"))
 
- const currentUserInfo = () => auth.currentUser;
+  const currentUserInfo = () => auth.currentUser;
 
-    const onGetNotes = (callback) => {
-      const queryPost = query(collection(db, "notes"), orderBy('date', 'desc'));
-      onSnapshot(queryPost, callback);
-    };
+  const onGetNotes = (callback) => {
+    const queryPost = query(collection(db, "notes"), orderBy('date', 'desc'));
+    onSnapshot(queryPost, callback);
+  };
 
 
   // listen for Firebase state change
@@ -125,9 +135,8 @@ export default function useFirebaseAuth() {
     authUser,
     loading,
     loading,
-    signInWithEmailAndPassword,
-    // createUserWithEmailAndPassword,
-    createUserWithEmailAndPassword,
+    signIn,
+    createUserWithEmail,
     signInWithGoogle,
     logOut,
     addANewPost,

@@ -9,10 +9,14 @@ import { useAuth } from '../context/AuthUserContext';
 import { useRouter } from "next/router";
 
 export default function Login(props) {
-
+    const { signIn } = useAuth();
     const [show, setShow] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [userInfo, setUserInfo] = useState({
+        email: null,
+        password: ""
+    });
     const [error, setError] = useState(null);
     const router = useRouter();
     const { signInWithEmailAndPassword, loading, authUser, signInWithGoogle } = useAuth();
@@ -21,17 +25,33 @@ export default function Login(props) {
         setShow(!show)
     }
     useEffect(() => {
-        if ( authUser)
-          router.push('/')
-      }, [authUser, loading, router])
-    
+        if (authUser)
+            router.push('/')
+    }, [authUser, loading, router])
 
-
-// debugger;
-    const signInGoogle = () => {
+    const handleChange=(e)=> {
+        e.preventDefault()
+        const { name, value } = e.target
+        setUserInfo(prevalue => {
+            return {
+                ...prevalue,
+                [name]: value
+            }
+        })
+    }
+    //
+    const signInEmail = (e) => {
+        e.preventDefault()
+        console.log(email, password)
+        signIn(email, password)
+    }
+    // debugger;
+    const signInGoogle = (event) => {
+        event.preventDefault();
+        const {email, password}= userInfo
         // e.preventDefault();
         signInWithGoogle()
-       
+
 
     }
     return (
@@ -56,7 +76,7 @@ export default function Login(props) {
                             placeholder="Email"
                             className={styles.input_text}
                             id="loginEmail"
-                            onChange={(event) => setEmail(event.target.value)}
+                            onChange={handleChange}
                         />
                         <span className="icon flex items-center px-4">
                             < HiMail size={25} />
@@ -69,7 +89,7 @@ export default function Login(props) {
                             placeholder="Pasword"
                             className={styles.input_text}
                             id="loginPassword"
-                            onChange={(event) => setPassword(event.target.value)}
+                            onChange={handleChange}
                         />
                         <span className="icon flex items-center px-4" onClick={handleToggle}>
                             <HiFingerPrint size={25} />
@@ -78,9 +98,10 @@ export default function Login(props) {
                     {/* login button */}
                     <div className="input-button">
                         <button
+                          onClick={signInEmail}
                             className={styles.button}
                             type="submit">Login</button>
-
+                      
                     </div>
 
 

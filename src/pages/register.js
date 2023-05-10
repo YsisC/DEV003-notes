@@ -10,25 +10,44 @@ import { useAuth } from '../context/AuthUserContext';
 
 export default function Register(){
     const [show, setShow] = useState(false);
-    const { createUserWithEmailAndPassword} = useAuth();
-    const [userR, setUserR] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const { createUserWithEmail} = useAuth();
+    // const [userR, setUserR] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+    const [userInfoRegister, setUserInfoRegister] = useState({
+        user:"",
+        email: "",
+        password: ""
+    });
 
+  
+    const handleChange=(e)=> {
+        e.preventDefault()
+        const { name, value } = e.target
+        setUserInfoRegister(prevalue => {
+            return {
+                ...prevalue,
+                [name]: value
+            }
+        })
+    }  
 
 const signUp =(i)=>{
     i.preventDefault()
-    // const { userR, email, password} = userRegister;
-    if(userR===undefined || email.length===0 && password.length===0)return;
-    console.log("user",userR);
-    console.log("email",email, "pass", password);
-    createUserWithEmailAndPassword(userR,email, password)
+    const {user, email, password}= userInfoRegister;
+    console.log("user fuera",userInfoRegister);
+
+    if(user.length===0 || email.length===0 && password.length===0)return;
+    // console.log("user",userR);
+    console.log("user", user,"email",email, "Password", password);
+    createUserWithEmail(user,email, password)
 }
 // const signInGooglee
     const handleToggle = () => {
         setShow(!show)
     }
     return(
+        <>
         <Layout>
         <Head>
             <title>Register</title>
@@ -46,8 +65,10 @@ const signUp =(i)=>{
                     <input
                         type="text"
                         placeholder="User"
+                        name="user"
                         className={styles.input_text}
-                        onChange={(event) => setUserR(event.target.value)}
+                        onChange={handleChange}
+                        // onChange={(event) => setUserR(event.target.value)}
                     />
                     <span className="icon flex items-center px-4">
                         < HiUser size={25} />
@@ -57,8 +78,10 @@ const signUp =(i)=>{
                     <input
                         type="email"
                         placeholder="Email"
+                        name="email"
                         className={styles.input_text}
-                        onChange={(event) => setEmail(event.target.value)}
+                        onChange={handleChange}
+                        // onChange={(event) => setEmail(event.target.value)}
                     />
                     <span className="icon flex items-center px-4">
                         < HiMail size={25} />
@@ -68,8 +91,10 @@ const signUp =(i)=>{
                     <input
                         type={`${show ? "text" : "password"}`}
                         placeholder="Password"
+                        name="password"
                         className={styles.input_text}
-                        onChange={(event) => setPassword(event.target.value)}
+                        onChange={handleChange}
+                        // onChange={(event) => setPassword(event.target.value)}
                     />
                     <span className="icon flex items-center px-4" onClick={handleToggle}>
                         <HiFingerPrint size={25} />
@@ -79,8 +104,9 @@ const signUp =(i)=>{
                 <div className="input-button">
                     <button
                         className={styles.button}
-                        // onClick={ signUp}
-                        type="submit">Sign Up</button>
+                        onClick={ signUp}
+                        type='submit'
+                        >Sign Up</button>
 
                 </div>
              
@@ -93,5 +119,6 @@ const signUp =(i)=>{
             </p>
         </section>
     </Layout>
+    </>
     )
 }
