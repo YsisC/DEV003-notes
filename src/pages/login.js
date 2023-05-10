@@ -11,8 +11,7 @@ import { useRouter } from "next/router";
 export default function Login(props) {
     const { signIn } = useAuth();
     const [show, setShow] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+
     const [userInfo, setUserInfo] = useState({
         email: null,
         password: ""
@@ -29,7 +28,7 @@ export default function Login(props) {
             router.push('/')
     }, [authUser, loading, router])
 
-    const handleChange=(e)=> {
+    const handleChange = (e) => {
         e.preventDefault()
         const { name, value } = e.target
         setUserInfo(prevalue => {
@@ -42,13 +41,14 @@ export default function Login(props) {
     //
     const signInEmail = (e) => {
         e.preventDefault()
+        const { email, password}= userInfo;
         console.log(email, password)
         signIn(email, password)
     }
     // debugger;
     const signInGoogle = (event) => {
         event.preventDefault();
-        const {email, password}= userInfo
+        const { email, password } = userInfo
         // e.preventDefault();
         signInWithGoogle()
 
@@ -66,7 +66,7 @@ export default function Login(props) {
                 </div>
                 {/* form */}
                 <form
-                    // onSubmit={onSubmit}
+                    onSubmit={signInEmail}
                     className="flex flex-col gap-4">
                     {/* { error} */}
                     <div className={styles.input_group}>
@@ -85,8 +85,8 @@ export default function Login(props) {
                     <div className={styles.input_group}>
                         <input
                             type={`${show ? "text" : "password"}`}
-                            name="pasword"
-                            placeholder="Pasword"
+                            name="password"
+                            placeholder="Password"
                             className={styles.input_text}
                             id="loginPassword"
                             onChange={handleChange}
@@ -98,10 +98,11 @@ export default function Login(props) {
                     {/* login button */}
                     <div className="input-button">
                         <button
-                          onClick={signInEmail}
+                            onClick={signInEmail}
                             className={styles.button}
-                            type="submit">Login</button>
-                      
+                            type="submit"
+                        >Login</button>
+
                     </div>
 
 
