@@ -34,7 +34,7 @@ export default function Homepage(props) {
         <CreateArea />
         <NoteList value="notes" />
       </RootLayout>
-      <Footer></Footer>
+
     </div>
   )
 }

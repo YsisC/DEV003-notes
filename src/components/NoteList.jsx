@@ -25,16 +25,16 @@ function NoteList({ value }) {
     return unsubscribe;
 
 
-  }, []) //
+  }, [value, setNoteList]) //
   return (
     <div className={styles.note_list}>
 
       {
-        noteList?.map((note, i) => (
+        noteList?.map((note) => (
 
           <Note
-            key={i}
-            id={i}
+            key={note.id}
+            id={note.id}
             title={note.title}
             content={note.content}
             displayName={note.user.displayName}

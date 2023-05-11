@@ -13,6 +13,7 @@ import CreateArea from '../components/CreateArea';
 import NoteList from '../components/NoteList';
 import Footer from '../components/Footer';
 import RootLayout from '../layouts/RootLayout';
+import Modal from '../components/Modal'
 
 export default function Home(props) {
 
@@ -42,6 +43,7 @@ export default function Home(props) {
   }
 
   return (
+    <>
     <div className={styles.container}>
       <Head>
         <title>Lab Note</title>
@@ -54,9 +56,10 @@ export default function Home(props) {
         <NoteList value="notes" />
         {/* <NoteList value="cats" /> */}
       </RootLayout>
-
-      <Footer></Footer>
     </div>
+            <Modal  />
+
+    </>
   )
 }
 

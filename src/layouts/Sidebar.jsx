@@ -37,7 +37,7 @@ export default function Sidebar({ isOpen }) {
         <motion.div
             variants={SideBar_animation}
             animate={isOpen ? 'open' : 'closed'}
-            className=' bg-white text-gray  z-[999] w-[16rem] max-w-[16rem]
+            className=' bg-white text-gray  z-[4] w-[16rem] max-w-[16rem]
     h-screen overflow-hidden md:relative fixed shadow-xl md:top-1'
         >
             {/* Menus */}
