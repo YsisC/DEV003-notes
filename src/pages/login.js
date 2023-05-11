@@ -98,6 +98,8 @@ export default function Login(props) {
                     {/* login button */}
                     <div className="input-button">
                         <button
+                        role="login"
+                        id="signIn"
                             onClick={signInEmail}
                             className={styles.button}
                             type="submit"
