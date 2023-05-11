@@ -13,6 +13,7 @@ const authUserContext = createContext({
     getNotes:  async () => { },
     onGetNotes: async () => { },
     currentUserInfo: async () => { },
+    deleteNote: async () => { },
 });
 
 export function AuthUserProvider({ children }) {

@@ -135,7 +135,7 @@ export default function useFirebaseAuth() {
     return () => unsubscribe()
   }, []);
 
-
+  const deleteNote = async (id) => await deleteDoc(doc(db, 'notes', id));
 
   return {
     authUser,
@@ -148,7 +148,8 @@ export default function useFirebaseAuth() {
     addANewPost,
     getNotes,
     onGetNotes,
-    currentUserInfo
+    currentUserInfo, 
+    deleteNote
   };
 
 

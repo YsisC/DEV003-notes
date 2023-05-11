@@ -4,32 +4,39 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Header from '../components/Header';
 import Modal from '../components/Modal'
-
+import {DbUserProvider, useDb}from '../context/FirestoreDbContext'
 
 
 export default function RootLayout({ children }) {
-    const [showModal, setShowModal]= useState(false)
+      //test autContext 2
+  const { showModal,  } = useDb();
+  console.log(showModal)
     const [isOpen, setIsOpen] = useState(true)
     const toogleMenu = () => {
         setIsOpen(!isOpen)
     }
-const openModal=()=>{
-    setShowModal(true)
-}
+// const openModal=()=>{
+//     setShowModal(true)
+// }
     return (
         <>
+       <dbUserContext >
+
+   
             <div>
                 <Header toogleMenu={toogleMenu} />
                 <div className='flex gap-6'>
                     <Sidebar isOpen={isOpen} />
                     <main 
 
-                    className=' flex-1 z-0 h-screen overflow-y-auto max-[767px]:pl-16  py-4'>
+                    className=' flex-1 z-0 h-screen overflow-y-auto max-[767px]:pl-16   pt-4'>
                         {children}
                     </main>
                 </div>
             </div>  
-          {/* <Modal isVisible={showModal} /> */}
+                 <Modal isVisible={showModal} />
+            </dbUserContext>
+     
             </>
 
 

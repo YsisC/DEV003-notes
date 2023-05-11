@@ -2,12 +2,18 @@ import React from 'react'
 import styles from '../styles/Home.module.css'
 // import MdDelete from 'react-icons/md'
 import { MdDelete } from "react-icons/md";
+import { useDb }from '../context/FirestoreDbContext'
+import { useAuth } from '../context/AuthUserContext';
 
-function Note({id, title, content, displayName, openModal }) {
 
-const deleteNote=()=>{
+function Note({id, title, content, displayName, }) {
+  const {  deleteNote } = useAuth();
+const deleteNoteId=()=>{
   console.log(id)
-  openModal
+
+  // console.log(idNote)
+  deleteNote(id)
+  // openModal()
 }
   return (
   
@@ -20,7 +26,9 @@ const deleteNote=()=>{
         <small>{displayName} </small>
         {/* <small>20/20/17 </small> */}
         <button>
-          <MdDelete size={30} onClick={deleteNote} />
+          <MdDelete size={30}
+           onClick={deleteNoteId}
+           />
 
         </button>
       </div>

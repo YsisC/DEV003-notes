@@ -11,7 +11,7 @@ import styles from '../styles/Home.module.css'
 import { useAuth } from '../context/AuthUserContext';
 
 
-function NoteList({ value }) {
+export default function NoteList({ value }) {
 
   const [noteList, setNoteList] = useState([]);
   useEffect(() => {
@@ -46,4 +46,3 @@ function NoteList({ value }) {
   )
 }
 
-export default NoteList
