@@ -4,9 +4,11 @@ import styles from '../styles/Home.module.css'
 import { MdDelete } from "react-icons/md";
 import { useDb }from '../context/FirestoreDbContext'
 import { useAuth } from '../context/AuthUserContext';
+import { useRouter } from 'next/router';
 
 
 function Note({id, title, content, displayName, }) {
+  const router = useRouter()
   const {  deleteNote } = useAuth();
 const deleteNoteId=()=>{
   console.log(id)
@@ -31,6 +33,7 @@ const deleteNoteId=()=>{
            />
 
         </button>
+        <button className={styles.btn} onClick={() => router.push(`/notes/${id}`)}>View</button>
       </div>
 
 
