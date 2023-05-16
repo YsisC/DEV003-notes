@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
 // }
     return (
         <>
-       <dbUserContext >
+
 
    
             <div>
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
                 </div>
             </div>  
                  <Modal isVisible={showModal} />
-            </dbUserContext>
+
      
             </>
 

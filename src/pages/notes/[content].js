@@ -1,51 +1,89 @@
+// Firebase
 import { db } from '@/src/firebase.config'
 import { doc, getDoc } from 'firebase/firestore'
+//Hooks
 import React, { useEffect, useState } from 'react'
-import styles from '../../styles/Home.module.css'
-import { MdDelete } from "react-icons/md";
 import { useAuth } from '@/src/context/AuthUserContext';
+// CSS
+import styles from '../../styles/Home.module.css'
+// React Icons
+import { MdDelete } from "react-icons/md";
+//Components
+import Note from '@/src/components/Note';
 
 export default function NoteId({ notes }) {
+  const router = useRouter()
+  const [edit, setEdit] = useState(false);
   const [note, setNote] = useState([]);
-const {authUser}=useAuth()
-  useEffect(()=>{
+  const [title, setTitle] = useState(''); // Declare a state variable...
+  const { authUser } = useAuth()
+
+  useEffect(() => {
     setNote(JSON.parse(notes))
-  },[notes])
-  const {  deleteNote } = useAuth();
-  const deleteNoteId=()=>{
+  }, [notes])
+
+
+  const  onChange = (e) => {
+    // setEdit(true)
+    // if (edit) {
+    const { value, name } = e.target;
+    setNote(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+    // }
+  }
+  // console.log(JSON.parse(notes))
+  JSON.parse(notes)
+  // console.log("aut",authUser.uid)
+  // console.log("noteuser", note.user.uid)
+  const { deleteNote } = useAuth();
+  const deleteNoteId = () => {
     console.log(id)
-  
     // console.log(idNote)
     deleteNote(id)
     // openModal()
   }
 
-  // console.log("prueba de note",todosProps)
   return (
     <>
       <div className={styles.note}>
-      <div className={styles.note_main}>
-      <input className="b" type="text"
-        value={note.title}
-      />
-      <input className="b" type="text"
-        value={note.content}
-      />
-      <input className="b" type="text"
-        value={note.id}
-      />
-      </div>
-      <div className={styles.note_footer}>
-      <button>
-          <MdDelete size={30}
-           onClick={deleteNoteId}
-           />
+        <div className={styles.note_main}>
+          <input className="b"
+            type="text"
+            name="title"
+            value={note.title}
+            onChange={ onChange}
+          />
+          <textarea
+            name="content"
+            className="b" 
+            type="text"
+            onChange={ onChange}
+            value={note.content}
+          />
+          <input className="b" type="text"
+            value={note.id}
+          />
+        </div>
+        <div className={styles.note_footer}>
+          <button>
+            <MdDelete size={30}
+              onClick={deleteNoteId}
+            />
 
-        </button>
+          </button>
+          <button onClick={onSubmit}>POST</button>
+        </div>
       </div>
-      </div>
-   
-  
+      <Note
+        key={note.id}
+        id={note.id}
+        title={note.title}
+        content={note.content}
+      // displayName={note.user.displayName}
+      />
+
     </>
 
   )
@@ -54,7 +92,7 @@ const {authUser}=useAuth()
 export async function getServerSideProps({ query: { content } }) {
   const docRef = doc(db, 'notes', content)
   const docSnap = await getDoc(docRef)
-  const notes = docSnap.data()
+  const notes = { ...docSnap.data(), id: docSnap.id }
 
   return {
     props: {

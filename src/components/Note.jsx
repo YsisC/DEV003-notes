@@ -1,39 +1,50 @@
 import React from 'react'
 import styles from '../styles/Home.module.css'
 // import MdDelete from 'react-icons/md'
-import { MdDelete } from "react-icons/md";
-import { useDb }from '../context/FirestoreDbContext'
+import { MdDelete, MdModeEditOutline } from "react-icons/md";
+import { useDb } from '../context/FirestoreDbContext'
 import { useAuth } from '../context/AuthUserContext';
 import { useRouter } from 'next/router';
 
 
-function Note({id, title, content, displayName, }) {
+function Note({ id, title, content, displayName, }) {
   const router = useRouter()
-  const {  deleteNote } = useAuth();
-const deleteNoteId=()=>{
-  console.log(id)
+  const { deleteNote } = useAuth();
 
-  // console.log(idNote)
-  deleteNote(id)
-  // openModal()
-}
+  const deleteNoteId = () => {
+    console.log(id)
+
+    // console.log(idNote)
+    deleteNote(id)
+    // openModal()
+  }
   return (
-  
+
     <div className={styles.note}>
       <div className={styles.note_main}>
         <h1> {title}</h1>
         <p>{content}</p>
+        {/* <p>{id}</p> */}
       </div>
       <div className={styles.note_footer}>
-        <small>{displayName} </small>
+        <button>
+          <MdModeEditOutline size={30} onClick={() => {
+            router.push({
+              pathname: 'home/notes/[content]',
+              query: { content: id }
+            });
+          }}
+          />
+        </button>
+
         {/* <small>20/20/17 </small> */}
         <button>
           <MdDelete size={30}
-           onClick={deleteNoteId}
-           />
+            onClick={deleteNoteId}
+          />
 
         </button>
-        <button className={styles.btn} onClick={() => router.push(`/notes/${id}`)}>View</button>
+
       </div>
 
 
