@@ -38,10 +38,9 @@ export default function NoteId({ notes }) {
   }
   // console.log(JSON.parse(notes))
   JSON.parse(notes)
-  // console.log("aut",authUser.uid)
-  // console.log("noteuser", note.user.uid)
+
   const onSubmit = async (e) => {
-    const { id } = router.query
+    // const { id } = router.query
     const { content } = router.query;
     const docRef = doc(db, 'notes', content);
     await updateDoc(docRef, note);
@@ -52,8 +51,7 @@ export default function NoteId({ notes }) {
   }
 
   const deleteNoteId = () => {
-    console.log(id)
-    // console.log(idNote)
+
     deleteNote(id)
     // openModal()
   }
