@@ -30,7 +30,7 @@ function Note({ id, title, content, displayName, }) {
         <button>
           <MdModeEditOutline size={30} onClick={() => {
             router.push({
-              pathname: 'home/notes/[content]',
+              pathname: 'notes/[content]',
               query: { content: id }
             });
           }}

@@ -1,6 +1,6 @@
 // Firebase
 import { db } from '@/src/firebase.config'
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, getDoc, updateDoc } from 'firebase/firestore'
 //Hooks
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/src/context/AuthUserContext';
@@ -10,13 +10,16 @@ import styles from '../../styles/Home.module.css'
 import { MdDelete } from "react-icons/md";
 //Components
 import Note from '@/src/components/Note';
+import { useRouter } from 'next/router';
 
 export default function NoteId({ notes }) {
+  // const router = useRouter()
   const router = useRouter()
   const [edit, setEdit] = useState(false);
   const [note, setNote] = useState([]);
   const [title, setTitle] = useState(''); // Declare a state variable...
-  const { authUser } = useAuth()
+  // const { authUser } = useAuth()
+  const { deleteNote,  } = useAuth();
 
   useEffect(() => {
     setNote(JSON.parse(notes))
@@ -37,7 +40,17 @@ export default function NoteId({ notes }) {
   JSON.parse(notes)
   // console.log("aut",authUser.uid)
   // console.log("noteuser", note.user.uid)
-  const { deleteNote } = useAuth();
+  const onSubmit = async (e) => {
+    const { id } = router.query
+    const { content } = router.query;
+    const docRef = doc(db, 'notes', content);
+    await updateDoc(docRef, note);
+    // await router.push(`/notes/${content}`)
+    await router.push(`/home`)
+
+    console.log(id, content );
+  }
+
   const deleteNoteId = () => {
     console.log(id)
     // console.log(idNote)
@@ -47,7 +60,7 @@ export default function NoteId({ notes }) {
 
   return (
     <>
-      <div className={styles.note}>
+      <div key={note.id} className={styles.note}>
         <div className={styles.note_main}>
           <input className="b"
             type="text"
@@ -59,12 +72,10 @@ export default function NoteId({ notes }) {
             name="content"
             className="b" 
             type="text"
-            onChange={ onChange}
             value={note.content}
+            onChange={ onChange}
           />
-          <input className="b" type="text"
-            value={note.id}
-          />
+          
         </div>
         <div className={styles.note_footer}>
           <button>
@@ -76,13 +87,13 @@ export default function NoteId({ notes }) {
           <button onClick={onSubmit}>POST</button>
         </div>
       </div>
-      <Note
+      {/* <Note
         key={note.id}
         id={note.id}
         title={note.title}
         content={note.content}
       // displayName={note.user.displayName}
-      />
+      /> */}
 
     </>
 
@@ -92,7 +103,7 @@ export default function NoteId({ notes }) {
 export async function getServerSideProps({ query: { content } }) {
   const docRef = doc(db, 'notes', content)
   const docSnap = await getDoc(docRef)
-  const notes = { ...docSnap.data(), id: docSnap.id }
+  const notes = { ...docSnap.data(), id: docSnap.id,  date: doc.date }
 
   return {
     props: {

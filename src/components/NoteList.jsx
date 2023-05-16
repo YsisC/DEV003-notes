@@ -19,7 +19,7 @@ export default function NoteList({ value, notes }) {
     const collectionRef = collection(db, value)
     const q = query(collectionRef, orderBy("date", "desc"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      setNoteList(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, date: doc.data().date?.toDate().getTime() })))
+      setNoteList(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, date: doc.date })))
 
     });
     return unsubscribe;
@@ -52,7 +52,7 @@ export const getServerSideProps = async (context) => {
   const querySnapshot = await getDocs(q)
   const docs = []
   querySnapshot.forEach((doc) => {
-    docs.push({ ...doc.data(), id: doc.id, date: doc.data().date.toDate().getTime() })
+    docs.push({ ...doc.data(), id: doc.id,  date: doc.date })
   })
   return {
     props: {
