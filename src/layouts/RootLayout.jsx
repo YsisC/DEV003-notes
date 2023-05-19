@@ -8,13 +8,15 @@ import {DbUserProvider, useDb}from '../context/FirestoreDbContext'
 
 
 export default function RootLayout({ children }) {
-      //test autContext 2
-  const { showModal,  } = useDb();
-  console.log(showModal)
+
+  const { showModal  } = useDb();
+//Menu toogle sidebar
     const [isOpen, setIsOpen] = useState(true)
     const toogleMenu = () => {
         setIsOpen(!isOpen)
     }
+    
+//Show Modal
 // const openModal=()=>{
 //     setShowModal(true)
 // }

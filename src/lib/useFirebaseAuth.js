@@ -70,12 +70,12 @@ export default function useFirebaseAuth() {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = res.user;
-      if(name!==""){
+      if (name !== "") {
         updateProfile(auth.currentUser, {
           displayName: name,
         });
       }
-      
+
       await addDoc(collection(db, "users"), {
         uid: user.uid,
         name,
@@ -137,6 +137,7 @@ export default function useFirebaseAuth() {
 
   const deleteNote = async (id) => await deleteDoc(doc(db, 'notes', id));
 
+ 
   return {
     authUser,
     loading,
@@ -148,7 +149,7 @@ export default function useFirebaseAuth() {
     addANewPost,
     getNotes,
     onGetNotes,
-    currentUserInfo, 
+    currentUserInfo,
     deleteNote
   };
 

@@ -11,22 +11,29 @@ import { MdDelete } from "react-icons/md";
 //Components
 import Note from '@/src/components/Note';
 import { useRouter } from 'next/router';
+import RootLayout from '@/src/layouts/RootLayout';
+import Modal from '@/src/components/Modal';
 
 export default function NoteId({ notes }) {
+  const [showModal, setShowModal] = useState(true)
+  //Show Modal
+  const openModal = () => {
+    setShowModal(true)
+  }
   // const router = useRouter()
   const router = useRouter()
   const [edit, setEdit] = useState(false);
   const [note, setNote] = useState([]);
   const [title, setTitle] = useState(''); // Declare a state variable...
   // const { authUser } = useAuth()
-  const { deleteNote,  } = useAuth();
+  const { deleteNote, } = useAuth();
 
   useEffect(() => {
     setNote(JSON.parse(notes))
   }, [notes])
 
 
-  const  onChange = (e) => {
+  const onChange = (e) => {
     // setEdit(true)
     // if (edit) {
     const { value, name } = e.target;
@@ -47,52 +54,56 @@ export default function NoteId({ notes }) {
     // await router.push(`/notes/${content}`)
     await router.push(`/home`)
 
-    console.log(id, content );
+    console.log( content);
   }
 
-  const deleteNoteId = () => {
-
-    deleteNote(id)
+  const deleteNoteId = async () => {
+    console.log(note.id)
+    deleteNote(note.id)
+    await router.push(`/home`)
     // openModal()
   }
 
   return (
     <>
-      <div key={note.id} className={styles.note}>
-        <div className={styles.note_main}>
-          <input className="b"
-            type="text"
-            name="title"
-            value={note.title}
-            onChange={ onChange}
-          />
-          <textarea
-            name="content"
-            className="b" 
-            type="text"
-            value={note.content}
-            onChange={ onChange}
-          />
-          
-        </div>
-        <div className={styles.note_footer}>
-          <button>
-            <MdDelete size={30}
-              onClick={deleteNoteId}
-            />
+      <RootLayout>
 
-          </button>
-          <button onClick={onSubmit}>POST</button>
-        </div>
-      </div>
-      {/* <Note
-        key={note.id}
-        id={note.id}
-        title={note.title}
-        content={note.content}
-      // displayName={note.user.displayName}
-      /> */}
+      </RootLayout>
 
+      <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center  z-[10]'>
+        <div className='w-80 md:w-[32rem] flex flex-col '>
+          <button className='text-white text-xl z-[11]  place-self-end'>X</button>
+         
+            <div key={note.id} className={styles.note_modal}>
+              <div className={styles.note_main}>
+                <input className="b"
+                  type="text"
+                  name="title"
+                  value={note.title}
+                  onChange={onChange}
+                />
+                <textarea
+                  name="content"
+                  className="b"
+                  type="text"
+                  value={note.content}
+                  onChange={onChange}
+                />
+
+              </div>
+              <div className={styles.note_footer}>
+                <button>
+                  <MdDelete size={30}
+                    onClick={deleteNoteId}
+                  />
+
+                </button>
+                <button onClick={onSubmit}>POST</button>
+              </div>
+            </div>
+          </div>
+        </div>
+     
     </>
 
   )
@@ -101,7 +112,7 @@ export default function NoteId({ notes }) {
 export async function getServerSideProps({ query: { content } }) {
   const docRef = doc(db, 'notes', content)
   const docSnap = await getDoc(docRef)
-  const notes = { ...docSnap.data(), id: docSnap.id,  date: doc.date }
+  const notes = { ...docSnap.data(), id: docSnap.id, date: doc.date }
 
   return {
     props: {
