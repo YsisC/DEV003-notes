@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../styles/Home.module.css'
 // import MdDelete from 'react-icons/md'
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
-import { useDb } from '../context/FirestoreDbContext'
+
 import { useAuth } from '../context/AuthUserContext';
 import { useRouter } from 'next/router';
 

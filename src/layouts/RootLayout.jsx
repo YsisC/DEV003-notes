@@ -4,22 +4,19 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Header from '../components/Header';
 import Modal from '../components/Modal'
-import {DbUserProvider, useDb}from '../context/FirestoreDbContext'
+
 
 
 export default function RootLayout({ children }) {
 
-  const { showModal  } = useDb();
+
 //Menu toogle sidebar
     const [isOpen, setIsOpen] = useState(true)
     const toogleMenu = () => {
         setIsOpen(!isOpen)
     }
-    
-//Show Modal
-// const openModal=()=>{
-//     setShowModal(true)
-// }
+
+
     return (
         <>
 
@@ -36,7 +33,7 @@ export default function RootLayout({ children }) {
                     </main>
                 </div>
             </div>  
-                 <Modal isVisible={showModal} />
+                 {/* <Modal isVisible={showModal} /> */}
 
      
             </>
