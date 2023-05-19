@@ -1,7 +1,6 @@
-import { render, screen, fireEvent, } from '@testing-library/react';
+import { render, screen, } from '@testing-library/react';
 import "@testing-library/jest-dom";
 import Login from "../pages/login";
-import Home from '../pages';
 import { useRouter } from 'next/router'
 // import proxyquire from 'proxyquire';
 import { db } from '../firebase.config';
@@ -66,7 +65,7 @@ test('It calls router.push home', async () => {
 function setupRender() {
     render(<Login />);
 
-    const buttonSigIn = screen.getByRole('name', { login: /login/i })
+    const buttonSigIn = screen.getByText("Login" )
 
     return {
         buttonSigIn

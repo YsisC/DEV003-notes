@@ -111,6 +111,7 @@ export default function Login(props) {
                 </form>
                 <div className="input-button ">
                     <button
+                    id="Login"
                         onClick={signInGoogle}
                         className={styles.button_custom} type="button">
                         Sign in with Google<Image src={'./assets/google.svg'} width="20" height="20" alt="google"></Image>
