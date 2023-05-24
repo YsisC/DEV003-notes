@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthUserContext';
 import { useRouter } from 'next/router';
 
 
-function Note({ id, title, content, displayName, }) {
+export default function Note({ id, title, content, displayName, }) {
   const router = useRouter()
   const { deleteNote } = useAuth();
 
@@ -52,4 +52,3 @@ function Note({ id, title, content, displayName, }) {
   )
 }
 
-export default Note

@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 // Components
 import Sidebar from './Sidebar';
-import Header from '../components/Header';
-import Modal from '../components/Modal'
+import { Header , Modal} from '../components';
+
 
 
 

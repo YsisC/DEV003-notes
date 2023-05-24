@@ -8,7 +8,7 @@ import { HiPlus } from "react-icons/hi";
 
 
 
-function CreateArea() {
+export   function CreateArea() {
     const [isExpanded, setIsExpanded] = useState(false)
     const { addANewPost, } = useAuth();
     const [note, setNote] = useState({
@@ -82,4 +82,4 @@ function CreateArea() {
         </div>)
 }
 
-export default CreateArea
+

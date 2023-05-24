@@ -11,7 +11,7 @@ import styles from '../styles/Home.module.css'
 import { useAuth } from '../context/AuthUserContext';
 
 
-export default function NoteList({ value, notes }) {
+export  function NoteList({ value, notes }) {
 
   const [noteList, setNoteList] = useState([]);
   useEffect(() => {

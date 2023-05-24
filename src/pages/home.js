@@ -7,10 +7,8 @@ import { useAuth } from '../context/AuthUserContext';
 //Roter
 import { useRouter } from 'next/router';
 //Components
-import Header from '../components/Header';
-import CreateArea from '../components/CreateArea';
-import NoteList from '../components/NoteList';
-import Footer from '../components/Footer';
+import { CreateArea,  NoteList }  from '../components';
+
 import RootLayout from '../layouts/RootLayout';
 
 export default function Homepage(props) {

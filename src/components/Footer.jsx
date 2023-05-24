@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Footer() {
+export  function Footer() {
   return (
     <footer>
         <p> Created by Ysis Longart </p>

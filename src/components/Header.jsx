@@ -8,7 +8,7 @@ import styles from '../styles/Header.module.css'
 //react-icon
 import { HiMenu, HiOutlineSearch } from 'react-icons/hi'
 
-function Header({ toogleMenu }) {
+export  function Header({ toogleMenu }) {
   const { logOut } = useAuth();
   const signOut = (i) => {
     i.preventDefault()
@@ -51,4 +51,4 @@ function Header({ toogleMenu }) {
 
 
 
-export default Header
+
