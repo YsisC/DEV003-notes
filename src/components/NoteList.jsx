@@ -13,7 +13,15 @@ import { useAuth } from '../context/AuthUserContext';
 
 export  function NoteList({ value, notes }) {
 
+  const {  authUser , currentUserInfo, } = useAuth();
+
   const [noteList, setNoteList] = useState([]);
+
+
+  const user = currentUserInfo()
+  // console.log(user.uid)
+
+
   useEffect(() => {
 
     const collectionRef = collection(db, value)
@@ -31,14 +39,16 @@ export  function NoteList({ value, notes }) {
 
       {
         noteList?.map((note) => (
-
+(user.uid === note.user.uid)&&
           <Note
             key={note.id}
             id={note.id}
             title={note.title}
             content={note.content}
             displayName={note.user.displayName}
+            uid={note.user}
           />
+        
         ))
 
       }

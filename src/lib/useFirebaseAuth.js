@@ -64,6 +64,7 @@ export default function useFirebaseAuth() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode)
       })
 
   const createUserWithEmail = async (name, email, password) => {

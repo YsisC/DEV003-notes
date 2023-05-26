@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthUserContext';
 //Roter
 import { useRouter } from 'next/router';
 //Components
-import { CreateArea,  NoteList }  from '../components';
+import { CreateNote,  NoteList }  from '../components';
 
 import RootLayout from '../layouts/RootLayout';
 
@@ -29,7 +29,7 @@ export default function Homepage(props) {
         <link rel="icon" href="https://raw.githubusercontent.com/YsisC/DEV003-notes/main/public/assets/logo.svg" />
       </Head>
       <RootLayout>
-        <CreateArea />
+        <CreateNote />
         <NoteList value="notes" />
       </RootLayout>
 

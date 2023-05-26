@@ -4,22 +4,27 @@ import styles from '../styles/Form.module.css'
 import { HiMail, HiFingerPrint, HiUser } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from '../context/AuthUserContext';
+import { useRouter } from "next/router";
 
 
 export default function Register(){
     const [show, setShow] = useState(false);
-    const { createUserWithEmail} = useAuth();
-    // const [userR, setUserR] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
+  
+    const {ignIn, loading, authUser, createUserWithEmail } = useAuth();
+    const router = useRouter();
+
     const [userInfoRegister, setUserInfoRegister] = useState({
         user:"",
         email: "",
         password: ""
     });
 
+    useEffect(() => {
+        if (authUser)
+            router.push('/')
+    }, [authUser, loading, router])
   
     const handleChange=(e)=> {
         e.preventDefault()

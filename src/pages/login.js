@@ -9,7 +9,7 @@ import { useAuth } from '../context/AuthUserContext';
 import { useRouter } from "next/router";
 
 export default function Login(props) {
-    const { signIn } = useAuth();
+  
     const [show, setShow] = useState(false);
 
     const [userInfo, setUserInfo] = useState({
@@ -18,7 +18,7 @@ export default function Login(props) {
     });
     const [error, setError] = useState(null);
     const router = useRouter();
-    const { signInWithEmailAndPassword, loading, authUser, signInWithGoogle } = useAuth();
+    const { signIn, loading, authUser, signInWithGoogle } = useAuth();
     // const signInGooglee
     const handleToggle = () => {
         setShow(!show)
@@ -27,6 +27,7 @@ export default function Login(props) {
         if (authUser)
             router.push('/')
     }, [authUser, loading, router])
+
 
     const handleChange = (e) => {
         e.preventDefault()

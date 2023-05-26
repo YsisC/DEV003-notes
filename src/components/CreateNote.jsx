@@ -8,7 +8,7 @@ import { HiPlus } from "react-icons/hi";
 
 
 
-export   function CreateArea() {
+export   function CreateNote() {
     const [isExpanded, setIsExpanded] = useState(false)
     const { addANewPost, } = useAuth();
     const [note, setNote] = useState({
@@ -37,7 +37,7 @@ export   function CreateArea() {
         if (title.length === 0 && content.length === 0) return;
         addANewPost(title, content)
             .then(resp => {
-                console.log("Document written with ID", resp.id)
+                console.log("Document written with ID", resp)
 
             })
         setNote({
@@ -52,6 +52,7 @@ export   function CreateArea() {
         <div>
             <form
                 onSubmit={submitButton}
+                aria-label="form" 
                 className={styles.form}>
                 {isExpanded && (
                     <input
