@@ -1,4 +1,4 @@
-export * from './CreateArea';
+export * from './CreateNote';
 export * from './Footer';
 export * from './Header';
 export * from './NoteList';
