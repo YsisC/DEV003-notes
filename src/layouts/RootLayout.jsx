@@ -22,13 +22,13 @@ export default function RootLayout({ children }) {
 
 
    
-            <div>
-                <Header toogleMenu={toogleMenu} />
-                <div className='flex gap-6'>
+            <div className='h-full'>
+                <Header className=" h-[10vh]"  toogleMenu={toogleMenu} />
+                <div className='flex gap-6 '>
                     <Sidebar isOpen={isOpen} />
                     <main 
 
-                    className=' flex-1 z-0 h-screen overflow-y-auto max-[767px]:pl-16   pt-4'>
+                    className=' flex-1 z-0 h-[90vh] overflow-y-auto max-[767px]:pl-16   pt-4'>
                         {children}
                     </main>
                 </div>

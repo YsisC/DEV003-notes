@@ -38,7 +38,7 @@ export default function Sidebar({ isOpen }) {
             variants={SideBar_animation}
             animate={isOpen ? 'open' : 'closed'}
             className=' bg-white text-gray  z-[4] w-[16rem] max-w-[16rem]
-    h-screen overflow-hidden  md:relative fixed shadow-xl md:top-1'
+    h-[90vh] overflow-hidden  md:relative fixed shadow-xl md:top-1'
         >
             {/* Menus */}
             <div className='flex flex-col h-full'>
@@ -53,7 +53,7 @@ export default function Sidebar({ isOpen }) {
                     </li>
                     <li>
                         <Link href={'/reminders'} className={router.pathname == "/reminders" ? "link active" : "link"} >
-                            <AiOutlineBell size={23}  className='min-w-max' /> Recordatorios
+                            <AiOutlineBell size={23} className='min-w-max' /> Recordatorios
                         </Link>
                     </li>
                     <li>
@@ -63,7 +63,7 @@ export default function Sidebar({ isOpen }) {
                     </li>
                     <li>
                         <Link href={'/reminders'} className={router.pathname == "/reminders" ? "link active" : "link"}>
-                            < BsPencilFill size={23} className='min-w-max'/> Editar Etiquetas
+                            < BsPencilFill size={23} className='min-w-max' /> Editar Etiquetas
                         </Link>
                     </li>
                     <li>
