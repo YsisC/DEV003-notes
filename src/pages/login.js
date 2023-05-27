@@ -23,11 +23,17 @@ export default function Login(props) {
     const handleToggle = () => {
         setShow(!show)
     }
+ const user = authUser;
+
     useEffect(() => {
         if (authUser)
             router.push('/')
     }, [authUser, loading, router])
 
+    useEffect(()=>{
+        // window.addEventListener('DOMContentLoaded')
+        // user.uid
+    },[])
 
     const handleChange = (e) => {
         e.preventDefault()

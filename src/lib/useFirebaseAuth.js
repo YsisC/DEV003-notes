@@ -123,6 +123,7 @@ export default function useFirebaseAuth() {
   const getNotes = () => getDocs(collection(db, "notes"))
 
   const currentUserInfo = () => auth.currentUser;
+  
 
   const onGetNotes = (callback) => {
     const queryPost = query(collection(db, "notes"), orderBy('date', 'desc'));

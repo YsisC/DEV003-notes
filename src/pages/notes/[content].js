@@ -64,7 +64,7 @@ export default function NoteId({ notes }) {
     await router.push(`/home`)
     // openModal()
   }
-
+console.log(note)
   return (
     <>
     <Head>
@@ -95,7 +95,8 @@ export default function NoteId({ notes }) {
                   value={note.content}
                   onChange={onChange}
                 />
-
+{/* <p className='self-end'>Ultima modificacion: {new Date(note.date).toDateString()}</p> */}
+<p className='self-end'>Ultima modificacion: { note.date }</p>
               </div>
               <div className={styles.note_footer}>
                 <button>
@@ -118,7 +119,8 @@ export default function NoteId({ notes }) {
 export async function getServerSideProps({ query: { content } }) {
   const docRef = doc(db, 'notes', content)
   const docSnap = await getDoc(docRef)
-  const notes = { ...docSnap.data(), id: docSnap.id, date: doc.date }
+
+  const notes = { ...docSnap.data(), id: docSnap.id, date:  docSnap.data().date.toDate().toDateString()}
 
   return {
     props: {

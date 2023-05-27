@@ -1,6 +1,6 @@
 //firebase
 import { db } from '../firebase.config';
-import { onSnapshot, collection, orderBy, query, addDoc, getDocs } from "firebase/firestore";
+import { onSnapshot, collection, orderBy, query, addDoc, getDocs, where } from "firebase/firestore";
 //react hooks
 import React from 'react'
 import { useEffect, useState } from 'react';
@@ -11,24 +11,26 @@ import styles from '../styles/Home.module.css'
 import { useAuth } from '../context/AuthUserContext';
 
 
-export  function NoteList({ value, notes }) {
+export function NoteList({ value, notes }) {
 
-  const {  authUser , currentUserInfo, } = useAuth();
+  const { authUser, currentUserInfo, } = useAuth();
 
   const [noteList, setNoteList] = useState([]);
 
+  const user = authUser
 
-  const user = currentUserInfo()
   // console.log(user.uid)
 
 
   useEffect(() => {
 
     const collectionRef = collection(db, value)
-    const q = query(collectionRef, orderBy("date", "desc"));
+    const q = query(collectionRef, orderBy("date", "desc"),);
+    // const q = query(collectionRef, orderBy("date", "desc"),);
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      setNoteList(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, date: doc.date })))
-
+//  querySnapshot.docs.map(doc => (   console.log( "date", doc.data().date.toDate()) ))
+      setNoteList(querySnapshot.docs.map(doc => (  { ...doc.data(), id: doc.id, date:  doc.data().date.toDate()})))
+    
     });
     return unsubscribe;
 
@@ -39,8 +41,7 @@ export  function NoteList({ value, notes }) {
 
       {
         noteList?.map((note) => (
-(user.uid === note.user.uid)&&
-          <Note
+          (user.uid === note.user.uid) && <Note
             key={note.id}
             id={note.id}
             title={note.title}
@@ -48,7 +49,7 @@ export  function NoteList({ value, notes }) {
             displayName={note.user.displayName}
             uid={note.user}
           />
-        
+
         ))
 
       }
@@ -57,12 +58,16 @@ export  function NoteList({ value, notes }) {
 }
 
 export const getServerSideProps = async (context) => {
+
+  // const {   currentUserInfo  } = useAuth();
+  const user = currentUserInfo()
   const collectionRef = collection(db, "notes")
   const q = query(collectionRef, orderBy("date", "desc"));
   const querySnapshot = await getDocs(q)
   const docs = []
   querySnapshot.forEach((doc) => {
-    docs.push({ ...doc.data(), id: doc.id,  date: doc.date })
+    // if (user.uid === doc.data().user.uid) return;
+    docs.push({ ...doc.data(), id: doc.id, date: doc.date })
   })
   return {
     props: {
