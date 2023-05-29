@@ -7,6 +7,7 @@ import Image from 'next/image'
 import styles from '../styles/Header.module.css'
 //react-icon
 import { HiMenu, HiOutlineSearch } from 'react-icons/hi'
+import { BiLogOut } from 'react-icons/bi'
 
 export  function Header({ toogleMenu }) {
   const { logOut } = useAuth();
@@ -41,7 +42,7 @@ export  function Header({ toogleMenu }) {
       </div>
     <div>
     <button onClick={signOut} className={styles.button_logOut} type="button">
-        Log out
+      <BiLogOut size={25}  />
       </button>
     </div>
      

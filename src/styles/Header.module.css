@@ -1,5 +1,5 @@
 .header {
-    @apply m-auto px-3 py-2 z-[998] flex flex-row items-center justify-between;
+    @apply  h-[10vh] md:relative  fixed m-auto px-3 py-2 z-[998] bg-white w-full flex flex-row items-center justify-between;
     box-shadow: 0 0 2px 0 rgb(114, 114, 114);
     align-self: center;
   }
@@ -8,8 +8,8 @@
     @apply text-slate-800 ml-1;
   }
   .button_logOut {
-    @apply w-20 h-7 bg-pink-800 text-gray-50 text-base;
-    border-radius: 0.5rem;
+    @apply text-pink-900;
+ 
   
   }
   .input_group{
@@ -23,3 +23,5 @@
 .input_text +*{
     @apply text-slate-200
 }
+
+
