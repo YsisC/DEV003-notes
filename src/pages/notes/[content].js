@@ -41,10 +41,10 @@ export default function NoteId({ notes }) {
     setNote(prevState => ({
       ...prevState,
       [name]: value,
-      
+
     }))
     // }
-   
+
   }
   // console.log(JSON.parse(notes))
   JSON.parse(notes)
@@ -53,7 +53,7 @@ export default function NoteId({ notes }) {
     // const { id } = router.query
     const { content } = router.query;
     const docRef = doc(db, 'notes', content);
-    await updateDoc(docRef,{ ...note ,  date: new Date() });
+    await updateDoc(docRef, { ...note, date: new Date() });
     // await router.push(`/notes/${content}`)
     await router.push(`/home`)
 
@@ -80,16 +80,21 @@ export default function NoteId({ notes }) {
 
       <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center  z-[10]'>
         <div className='w-80 md:w-[32rem] flex flex-col '>
-          <button className='text-white text-xl z-[11]  place-self-end'>X</button>
+         
 
           <div key={note.id} className={styles.note_modal}>
+          <div  className={styles.note_header} >
+                <input className="b"
+                  type="text"
+                  name="title"
+                  value={note.title}
+                  onChange={onChange}
+                />
+                 <button className=' text-xl z-[11]'  onClick={onSubmit}>X</button>
+              </div>
+           
             <div className={styles.note_main}>
-              <input className="b"
-                type="text"
-                name="title"
-                value={note.title}
-                onChange={onChange}
-              />
+            
               <textarea
                 name="content"
                 className="b"

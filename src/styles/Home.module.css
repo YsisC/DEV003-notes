@@ -3,12 +3,12 @@
 }
 
 .form {
-  @apply mx-auto my-4  md:p-2 bg-white w-4/6 mt-[5rem] md:mt-[0.5rem];
+  @apply mx-auto my-4 md:p-2 bg-white w-4/6 mt-[5rem] md:mt-[0.5rem];
   position: relative;
   margin-bottom: 20px;
   border-radius: 0.4rem;
   /* border-radius: 7px; */
-  box-shadow: 0 1px 7px rgb(128, 128, 128)
+  box-shadow: 0 1px 7px rgb(128, 128, 128);
 }
 
 .form input {
@@ -26,7 +26,7 @@
 
 
 .form .button {
-  @apply flex justify-center items-center outline-none cursor-pointer ;
+  @apply flex justify-center items-center outline-none cursor-pointer;
   @apply bg-pink-800 text-white p-1 text-base border-none w-9 h-9;
   position: absolute;
   right: 18px;
@@ -47,7 +47,7 @@
 }
 
 .note_list {
-  @apply grid  max-[767px]:px-2 items-center justify-items-start px-3 ;
+  @apply grid max-[767px]:px-2 items-center justify-items-start px-3;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, 15rem [col-start]);
   /* grid-template-columns: repeat(auto-fit,minmax(12rem, 1fr)) */
@@ -63,11 +63,18 @@
 }
 
 .note_modal {
-  @apply bg-white p-2 flex flex-col justify-between  rounded ;
+  @apply bg-white p-2 flex flex-col justify-between rounded;
   min-height: 170px;
   border-radius: 7px;
   box-shadow: 0 2px 5px rgb(175, 175, 175);
   float: lef;
+}
+
+ .note_header{
+  width: 100%;
+@apply flex justify-between;
+  /* border-bottom-color:  rgb(158, 156, 156);; */
+  border-bottom: 1px solid rgba(0, 0, 0, .15);
 }
 
 .note h1 {
@@ -91,6 +98,7 @@
   /* position: relative; */
 
 }
+
 .note_main input {
   @apply w-full border-none px-2 py-1 outline-none;
   font-size: 1.1rem;
