@@ -1,22 +1,36 @@
 //hooks
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthUserContext';
+import { useFirebaseData } from '../lib/useFirebaseData';
 //css
 import styles from '../styles/Home.module.css'
 //react-icons
 import { HiPlus } from "react-icons/hi";
 
+//Roter
+import { useRouter } from 'next/router';
 
-
-export   function CreateNote() {
+export function CreateNote({ category }) {
     const [isExpanded, setIsExpanded] = useState(false)
-    const { addANewPost, } = useAuth();
+    // const { addANewPost, } = useAuth();
     const [note, setNote] = useState({
         title: "",
         content: ""
     });
 
-   const handleChange=(e)=> {
+    const { authUser, loading, } = useAuth();
+    const router = useRouter();
+
+
+    // Listen for changes on loading and authUser, redirect if needed
+    useEffect(() => {
+        if (!loading && !authUser)
+            router.push('/login')
+    }, [authUser, loading, router]);
+
+
+    const { addANewPost } = useFirebaseData(category);
+    const handleChange = (e) => {
         e.preventDefault()
         const { name, value } = e.target
         setNote(prevalue => {
@@ -35,7 +49,7 @@ export   function CreateNote() {
         const { title, content } = note;
 
         if (title.length === 0 && content.length === 0) return;
-        addANewPost(title, content)
+        addANewPost(title, content, authUser)
             .then(resp => {
                 console.log("Document written with ID", resp)
 
@@ -52,7 +66,7 @@ export   function CreateNote() {
         <div>
             <form
                 onSubmit={submitButton}
-                aria-label="form" 
+                aria-label="form"
                 className={styles.form}>
                 {isExpanded && (
                     <input

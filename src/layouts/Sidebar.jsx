@@ -56,7 +56,7 @@ export default function Sidebar({ isOpen }) {
                             <AiOutlineBell size={23} className='min-w-max' /> Recordatorios
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link href={'/reminders'} className={router.pathname == "/reminders" ? "link active" : "link"} >
                             <CiBookmarkRemove size={23} className='min-w-max' /> Home
                         </Link>
@@ -65,7 +65,7 @@ export default function Sidebar({ isOpen }) {
                         <Link href={'/reminders'} className={router.pathname == "/reminders" ? "link active" : "link"}>
                             < BsPencilFill size={23} className='min-w-max' /> Editar Etiquetas
                         </Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link href={'/archive'} className={router.pathname == "/archive" ? "link active" : "link"}>
                             <HiOutlineFolderOpen size={23} className='min-w-max' /> Archivar

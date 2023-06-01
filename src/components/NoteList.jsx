@@ -11,7 +11,7 @@ import styles from '../styles/Home.module.css'
 import { useAuth } from '../context/AuthUserContext';
 
 
-export function NoteList({ value, notes }) {
+export function NoteList({ value, notes, category }) {
 
   const { authUser, currentUserInfo, } = useAuth();
 
@@ -48,6 +48,7 @@ export function NoteList({ value, notes }) {
             content={note.content}
             displayName={note.user.displayName}
             uid={note.user}
+            category ={category}
           />
 
         ))

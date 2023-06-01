@@ -49,8 +49,8 @@ export default function Home(props) {
         </Head>
 
         <RootLayout>
-          <CreateNote />
-          <NoteList value="notes" />
+        <CreateNote category={'notes'} />
+        <NoteList category={'notes'} value="notes" />
           {/* <NoteList value="cats" /> */}
         </RootLayout>
       </div>

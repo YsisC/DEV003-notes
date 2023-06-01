@@ -29,8 +29,8 @@ export default function Homepage(props) {
         <link rel="icon" href="https://raw.githubusercontent.com/YsisC/DEV003-notes/main/public/assets/logo.svg" />
       </Head>
       <RootLayout>
-        <CreateNote />
-        <NoteList value="notes" />
+      <CreateNote category={'notes'} />
+        <NoteList category={'notes'} value="notes" />
       </RootLayout>
 
     </div>

@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthUserContext';
 import { useRouter } from 'next/router';
 
 
-export default function Note({ id, title, content, displayName, }) {
+export default function Note({ id, title, content, displayName, category}) {
   const router = useRouter()
   const { deleteNote } = useAuth();
 
@@ -30,7 +30,7 @@ export default function Note({ id, title, content, displayName, }) {
         <button>
           <MdModeEditOutline size={30} onClick={() => {
             router.push({
-              pathname: 'notes/[content]',
+              pathname: `${category}/[content]`,
               query: { content: id }
             });
           }}
