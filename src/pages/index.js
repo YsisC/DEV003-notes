@@ -49,7 +49,7 @@ export default function Home(props) {
         </Head>
 
         <RootLayout>
-        <CreateNote category={'notes'} />
+        <CreateNote category={'notes'} authUser={authUser} />
         <NoteList category={'notes'} value="notes" />
           {/* <NoteList value="cats" /> */}
         </RootLayout>

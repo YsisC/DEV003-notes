@@ -29,7 +29,7 @@ export default function Homepage(props) {
         <link rel="icon" href="https://raw.githubusercontent.com/YsisC/DEV003-notes/main/public/assets/logo.svg" />
       </Head>
       <RootLayout>
-      <CreateNote category={'notes'} />
+      <CreateNote category={'notes'}  authUser={authUser} />
         <NoteList category={'notes'} value="notes" />
       </RootLayout>
 

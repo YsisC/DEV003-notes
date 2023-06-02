@@ -11,7 +11,20 @@ import { useRouter } from 'next/router';
 import { CreateNote, NoteList, Modal } from '../components';
 import RootLayout from '../layouts/RootLayout';
 
+
+
+
 export default function reminders() {
+  const { authUser, loading, } = useAuth();
+  const router = useRouter();
+
+   // Listen for changes on loading and authUser, redirect if needed
+  useEffect(() => {
+    if (!loading && !authUser)
+      router.push('/login')
+  }, [authUser, loading, router])
+
+
   return (
     <div className={styles.container}>
     <Head>
@@ -20,7 +33,7 @@ export default function reminders() {
       <link rel="icon" href="https://raw.githubusercontent.com/YsisC/DEV003-notes/main/public/assets/logo.svg" />
     </Head>
     <RootLayout>
-      <CreateNote category={'reminders'} />
+      <CreateNote category={'reminders'}  authUser={authUser} />
       <NoteList category={'reminders'} value="reminders" />
    
     </RootLayout>

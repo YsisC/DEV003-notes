@@ -10,7 +10,7 @@ import { HiPlus } from "react-icons/hi";
 //Roter
 import { useRouter } from 'next/router';
 
-export function CreateNote({ category }) {
+export function CreateNote({ category, authUser }) {
     const [isExpanded, setIsExpanded] = useState(false)
     // const { addANewPost, } = useAuth();
     const [note, setNote] = useState({
@@ -18,15 +18,8 @@ export function CreateNote({ category }) {
         content: ""
     });
 
-    const { authUser, loading, } = useAuth();
-    const router = useRouter();
 
 
-    // Listen for changes on loading and authUser, redirect if needed
-    useEffect(() => {
-        if (!loading && !authUser)
-            router.push('/login')
-    }, [authUser, loading, router]);
 
 
     const { addANewPost } = useFirebaseData(category);
