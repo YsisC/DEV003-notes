@@ -78,45 +78,15 @@ export default function NoteId({ notes }) {
 
       </RootLayout>
 
-      <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center  z-[10]'>
-        <div className='w-80 md:w-[32rem] flex flex-col '>
-         
-
-          <div key={note.id} className={styles.note_modal}>
-          <div  className={styles.note_header} >
-                <input className="b"
-                  type="text"
-                  name="title"
-                  value={note.title}
-                  onChange={onChange}
-                />
-                 <button className=' text-xl z-[11]'  onClick={onSubmit}>X</button>
-              </div>
-           
-            <div className={styles.note_main}>
-            
-              <textarea
-                name="content"
-                className="b"
-                type="text"
-                value={note.content}
-                onChange={onChange}
-              />
-              {/* <p className='self-end'>Ultima modificacion: {new Date(note.date).toDateString()}</p> */}
-              <p className='flex mb-2 justify-end'>Ultima modificacion: {note.date}</p>
-            </div>
-            <div className={styles.note_footer}>
-              <button>
-                <MdDelete size={30}
-                  onClick={deleteNoteId}
-                />
-
-              </button>
-              <button onClick={onSubmit}>POST</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Modal
+        onChange={onChange}
+        deleteNoteId={deleteNoteId}
+        isVisible={showModal}
+        note={note}
+        onSave={onSave}
+       
+      />
+  
 
     </>
 

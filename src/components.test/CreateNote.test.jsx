@@ -29,21 +29,21 @@ describe('Pruebas en <CreateNote />', () => {
     });
   
  
-    // test('debe enviar el formulario al hacer clic en el botón de envío', () => {
-    //   const addANewPostMock = jest.fn();
-    //   useFirebaseData.mockReturnValue({ addANewPost: addANewPostMock });
-    //   render(<CreateNote />);
-    //   const titleInput = screen.getByPlaceholderText('Title');
-    //   const contentTextarea = screen.getByRole('textbox');
-    //   const submitButton = screen.getByRole('button', { name: /add/i });
+    test('debe enviar el formulario al hacer clic en el botón de envío', () => {
+      const addANewPostMock = jest.fn();
+      useFirebaseData.mockReturnValue({ addANewPost: addANewPostMock });
+      render(<CreateNote />);
+      const titleInput = screen.getByPlaceholderText('Title');
+      const contentTextarea = screen.getByRole('textbox');
+      const submitButton = screen.getByRole('button', { name: /add/i });
 
-    //   fireEvent.click(contentTextarea);
-    //   fireEvent.change(titleInput, { target: { value: 'Nota de prueba' } });
-    //   fireEvent.change(contentTextarea, { target: { value: 'Contenido de prueba' } });
-    //   fireEvent.click(submitButton);
+      fireEvent.click(contentTextarea);
+      fireEvent.change(titleInput, { target: { value: 'Nota de prueba' } });
+      fireEvent.change(contentTextarea, { target: { value: 'Contenido de prueba' } });
+      fireEvent.click(submitButton);
   
-    //   expect(addANewPostMock).toHaveBeenCalledWith('Nota de prueba', 'Contenido de prueba');
-    // });
+      expect(addANewPostMock).toHaveBeenCalledWith('Nota de prueba', 'Contenido de prueba');
+    });
 
 
 

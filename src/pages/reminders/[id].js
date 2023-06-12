@@ -9,11 +9,11 @@ import styles from '../../styles/Home.module.css'
 // React Icons
 import { MdDelete } from "react-icons/md";
 //Components
-import Note from '@/src/components/Note';
 import { useRouter } from 'next/router';
 import RootLayout from '@/src/layouts/RootLayout';
-import Modal from '@/src/components/Modal';
+
 import Head from 'next/head';
+import { Modal } from '@/src/components';
 
 export default function NoteId({ notes }) {
   const [showModal, setShowModal] = useState(true)
@@ -49,24 +49,31 @@ export default function NoteId({ notes }) {
   // console.log(JSON.parse(notes))
   JSON.parse(notes)
 
-  const onSubmit = async (e) => {
+  const onSave = async (e) => {
+
     const { id } = router.query
-   
+
     const docRef = doc(db, 'reminders', id);
     await updateDoc(docRef, { ...note, date: new Date() });
-    // await router.push(`/notes/${content}`)
-    await router.push(`/home`)
+    if (e.target.id === 'container' || e.target.id === 'close') {
+      const { id } = router.query
 
-    console.log(content);
+      const docRef = doc(db, 'reminders', id);
+      await updateDoc(docRef, { ...note, date: new Date() });
+      // await router.push(`/notes/${content}`)
+      await router.push(`/reminders`)
+    }
+
+
   }
 
   const deleteNoteId = async () => {
     console.log(note.id)
     deleteNote(note.id)
-    await router.push(`/home`)
+    await router.push(`/reminders`)
     // openModal()
   }
-  console.log(note)
+
   return (
     <>
       <Head>
@@ -78,52 +85,21 @@ export default function NoteId({ notes }) {
 
       </RootLayout>
 
-      <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center  z-[10]'>
-        <div className='w-80 md:w-[32rem] flex flex-col '>
-         
-
-          <div key={note.id} className={styles.note_modal}>
-          <div  className={styles.note_header} >
-                <input className="b"
-                  type="text"
-                  name="title"
-                  value={note.title}
-                  onChange={onChange}
-                />
-                 <button className=' text-xl z-[11]'  onClick={onSubmit}>X</button>
-              </div>
-           
-            <div className={styles.note_main}>
-            
-              <textarea
-                name="content"
-                className="b"
-                type="text"
-                value={note.content}
-                onChange={onChange}
-              />
-              {/* <p className='self-end'>Ultima modificacion: {new Date(note.date).toDateString()}</p> */}
-              <p className='flex mb-2 justify-end'>Ultima modificacion: {note.date}</p>
-            </div>
-            <div className={styles.note_footer}>
-              <button>
-                <MdDelete size={30}
-                  onClick={deleteNoteId}
-                />
-
-              </button>
-              <button onClick={onSubmit}>POST</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Modal
+        onChange={onChange}
+        deleteNoteId={deleteNoteId}
+        isVisible={showModal}
+        note={note}
+        onSave={onSave}
+       
+      />
 
     </>
 
   )
 }
 
-export async function getServerSideProps({ query: { id} }) {
+export async function getServerSideProps({ query: { id } }) {
   const docRef = doc(db, 'reminders', id)
   const docSnap = await getDoc(docRef)
 

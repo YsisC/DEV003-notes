@@ -28,9 +28,9 @@ export function NoteList({ value, notes, category }) {
     const q = query(collectionRef, orderBy("date", "desc"),);
     // const q = query(collectionRef, orderBy("date", "desc"),);
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-//  querySnapshot.docs.map(doc => (   console.log( "date", doc.data().date.toDate()) ))
-      setNoteList(querySnapshot.docs.map(doc => (  { ...doc.data(), id: doc.id, date:  doc.data().date.toDate()})))
-    
+      //  querySnapshot.docs.map(doc => (   console.log( "date", doc.data().date.toDate()) ))
+      setNoteList(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, date: doc.data().date.toDate() })))
+
     });
     return unsubscribe;
 
@@ -39,7 +39,7 @@ export function NoteList({ value, notes, category }) {
   return (
     <div className={styles.note_list}>
 
-      {
+      { (user) &&
         noteList?.map((note) => (
           (user.uid === note.user.uid) && <Note
             key={note.id}
@@ -48,10 +48,12 @@ export function NoteList({ value, notes, category }) {
             content={note.content}
             displayName={note.user.displayName}
             uid={note.user}
-            category ={category}
+            category={category}
           />
 
         ))
+      
+       
 
       }
     </div>

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image'
 
 //Css
 import styles from '../styles/Home.module.css'
@@ -14,8 +15,8 @@ import RootLayout from '../layouts/RootLayout';
 
 
 
-export default function reminders() {
-  const { authUser, loading, } = useAuth();
+export default function Reminders(props) {
+  const { authUser, loading } = useAuth();
   const router = useRouter();
 
    // Listen for changes on loading and authUser, redirect if needed
