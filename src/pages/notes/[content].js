@@ -49,9 +49,9 @@ export default function NoteId({ notes }) {
   const onSave = async (e) => {
 
     if (e.target.id === 'container' || e.target.id === 'close') {
-      const { id } = router.query
+      const { content } = router.query;
+      const docRef = doc(db, 'notes', content);
 
-      const docRef = doc(db, 'reminders', id);
       await updateDoc(docRef, { ...note, date: new Date() });
       // await router.push(`/notes/${content}`)
       await router.push(`/home`)
@@ -83,9 +83,9 @@ export default function NoteId({ notes }) {
         isVisible={showModal}
         note={note}
         onSave={onSave}
-       
+
       />
-  
+
 
     </>
 
