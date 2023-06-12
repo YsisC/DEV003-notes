@@ -9,18 +9,15 @@ import styles from '../../styles/Home.module.css'
 // React Icons
 import { MdDelete } from "react-icons/md";
 //Components
-import Note from '@/src/components/Note';
+// import Note from '@/src/components/Note';
 import { useRouter } from 'next/router';
 import RootLayout from '@/src/layouts/RootLayout';
-import Modal from '@/src/components/Modal';
+import { Modal } from '@/src/components';
 import Head from 'next/head';
 
 export default function NoteId({ notes }) {
   const [showModal, setShowModal] = useState(true)
-  //Show Modal
-  const openModal = () => {
-    setShowModal(true)
-  }
+
   // const router = useRouter()
   const router = useRouter()
   const [edit, setEdit] = useState(false);
@@ -49,24 +46,25 @@ export default function NoteId({ notes }) {
   // console.log(JSON.parse(notes))
   JSON.parse(notes)
 
-  const onSubmit = async (e) => {
-    // const { id } = router.query
-    const { content } = router.query;
-    const docRef = doc(db, 'notes', content);
-    await updateDoc(docRef, { ...note, date: new Date() });
-    // await router.push(`/notes/${content}`)
-    await router.push(`/home`)
+  const onSave = async (e) => {
 
-    console.log(content);
+    if (e.target.id === 'container' || e.target.id === 'close') {
+      const { id } = router.query
+
+      const docRef = doc(db, 'reminders', id);
+      await updateDoc(docRef, { ...note, date: new Date() });
+      // await router.push(`/notes/${content}`)
+      await router.push(`/home`)
+    }
   }
 
   const deleteNoteId = async () => {
     console.log(note.id)
     deleteNote(note.id)
     await router.push(`/home`)
-    // openModal()
+
   }
-  console.log(note)
+
   return (
     <>
       <Head>
@@ -79,6 +77,7 @@ export default function NoteId({ notes }) {
       </RootLayout>
 
       <Modal
+        key={note.id}
         onChange={onChange}
         deleteNoteId={deleteNoteId}
         isVisible={showModal}

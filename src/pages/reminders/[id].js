@@ -15,6 +15,7 @@ import RootLayout from '@/src/layouts/RootLayout';
 import Head from 'next/head';
 import { Modal } from '@/src/components';
 
+
 export default function NoteId({ notes }) {
   const [showModal, setShowModal] = useState(true)
   //Show Modal
@@ -51,10 +52,7 @@ export default function NoteId({ notes }) {
 
   const onSave = async (e) => {
 
-    const { id } = router.query
-
-    const docRef = doc(db, 'reminders', id);
-    await updateDoc(docRef, { ...note, date: new Date() });
+  
     if (e.target.id === 'container' || e.target.id === 'close') {
       const { id } = router.query
 
@@ -86,6 +84,7 @@ export default function NoteId({ notes }) {
       </RootLayout>
 
       <Modal
+      key={note.id}
         onChange={onChange}
         deleteNoteId={deleteNoteId}
         isVisible={showModal}
