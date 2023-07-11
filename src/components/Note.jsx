@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 
 
 export default function Note({ id, title, content, displayName, category}) {
+  
   const router = useRouter()
   const { deleteNote } = useAuth();
 
@@ -18,29 +19,38 @@ export default function Note({ id, title, content, displayName, category}) {
     deleteNote(id)
     // openModal()
   }
+  const onEdit = async (e) => {
+    const isContainerNoteClicked = e.target.closest('#containerNote');
+    const isDeleteButtonClicked = e.target.closest('#delete');
+  
+    if (isContainerNoteClicked && !isDeleteButtonClicked) {
+      console.log('Edit clicked');
+    router.push({
+      pathname: `${category}/[content]`,
+      query: { content: id }
+    });
+  
+   }
+      
+
+
+  }
+
   return (
 
-    <div className={styles.note}>
-      <div className={styles.note_main}>
+    <div className={styles.note} onClick={onEdit} id='containerNote'>
+      <div  className={styles.note_main}   >
         <h1> {title}</h1>
         <p>{content}</p>
         {/* <p>{id}</p> */}
       </div>
-      <div className={styles.note_footer}>
-        <button>
-          <MdModeEditOutline size={30} onClick={() => {
-            router.push({
-              pathname: `${category}/[content]`,
-              query: { content: id }
-            });
-          }}
-          />
-        </button>
+      <div className={styles.note_footer} >
+       
 
         {/* <small>20/20/17 </small> */}
-        <button>
+        <button  onClick={deleteNoteId}  id='delete'>
           <MdDelete size={30}
-            onClick={deleteNoteId}
+        
           />
 
         </button>

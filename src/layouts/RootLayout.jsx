@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
 
 
 //Menu toogle sidebar
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
     const toogleMenu = () => {
         setIsOpen(!isOpen)
     }

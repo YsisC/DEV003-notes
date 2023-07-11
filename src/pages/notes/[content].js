@@ -1,8 +1,8 @@
 // Firebase
+import React, { useEffect, useState } from 'react'
 import { db } from '@/src/firebase.config'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 //Hooks
-import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/src/context/AuthUserContext';
 // CSS
 import styles from '../../styles/Home.module.css'
@@ -96,11 +96,19 @@ export async function getServerSideProps({ query: { content } }) {
   const docRef = doc(db, 'notes', content)
   const docSnap = await getDoc(docRef)
 
-  const notes = { ...docSnap.data(), id: docSnap.id, date: docSnap.data().date.toDate().toDateString() }
+
+  let notes = {};
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+    const id = docSnap.id;
+    const date = data.date ? data.date.toDate().toDateString() : '';
+
+    notes = { ...data, id, date };
+  }
 
   return {
     props: {
-      notes: JSON.stringify(notes) || []
-    }
-  }
+      notes: JSON.stringify(notes) || [],
+    },
+  };
 }

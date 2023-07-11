@@ -55,8 +55,7 @@
 }
 
 .note {
-  @apply bg-white p-2 flex w-full flex-col justify-between;
-  min-height: 170px;
+  @apply bg-white p-2 flex w-full flex-col ;
   border-radius: 7px;
   box-shadow: 0 2px 5px rgb(175, 175, 175);
   float: lef;
