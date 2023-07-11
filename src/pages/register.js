@@ -111,7 +111,7 @@ const signUp =(i)=>{
                         className={styles.button}
                         onClick={ signUp}
                         type='submit'
-                        >Sign Up</button>
+                        >Registrar</button>
 
                 </div>
              
@@ -120,7 +120,7 @@ const signUp =(i)=>{
             </form>
             {/* bottom */}
             <p className="text-center text-gray-600">
-               I have an account.  <Link legacyBehavior href={'/login'}><a className="text-pink-700">Login</a></Link>
+               Ya tienes una cuenta.  <Link legacyBehavior href={'/login'}><a className="text-pink-700">Login</a></Link>
             </p>
         </section>
     </Layout>

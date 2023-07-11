@@ -121,13 +121,13 @@ export default function Login(props) {
                     id="Login"
                         onClick={signInGoogle}
                         className={styles.button_custom} type="button">
-                        Sign in with Google<Image src={'./assets/google.svg'} width="20" height="20" alt="google"></Image>
+                        Ingresa con Google<Image src={'./assets/google.svg'} width="20" height="20" alt="google"></Image>
                     </button>
                 </div>
 
                 {/* bottom */}
                 <p className="text-center text-gray-600">
-                    Don&apos;t have an account yet? <Link legacyBehavior href={'/register'}><a className="text-pink-700">Sign Up</a></Link>
+                    Aun no tienes una cuenta? <Link legacyBehavior href={'/register'}><a className="text-pink-700">Registrate</a></Link>
                 </p>
             </section>
         </Layout>

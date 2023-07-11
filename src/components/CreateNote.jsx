@@ -65,7 +65,7 @@ export function CreateNote({ category, authUser }) {
                     <input
                         value={note.title}
                         type='text'
-                        placeholder='Title'
+                        placeholder='Titulo'
                         name="title"
                         onChange={handleChange}
                     ></input>
@@ -78,7 +78,7 @@ export function CreateNote({ category, authUser }) {
                         name='content'
                         onChange={handleChange}
                         rows={isExpanded ? 3 : 1}
-                        placeholder='Take a note....' >
+                        placeholder='Toma una nota....' >
                     </textarea>
                 </p>
                 <button
