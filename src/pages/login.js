@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
-import Layout from "../layouts/layout";
 import Link from "next/link";
 import styles from "../styles/Form.module.css"
 import Image from "next/image";
 import { HiMail, HiFingerPrint } from "react-icons/hi";
-import { useEffect, useState } from "react";
+
+import Layout from "../layouts/layout";
+import { Alert }  from '../components';
+
 import { useAuth } from '../context/AuthUserContext';
 import { useRouter } from "next/router";
 
@@ -23,6 +26,7 @@ export default function Login(props) {
     const handleToggle = () => {
         setShow(!show)
     }
+
  const user = authUser;
 
     useEffect(() => {
@@ -71,8 +75,10 @@ export default function Login(props) {
                     <h1 className=" text-pink-700 text-4xl font-bold py-4">Login</h1>
                     <p>Las notas son divertidas y necesarias</p>
                 </div>
+                <Alert isVisible={false} error={"No estas registrado"} />
                 {/* form */}
                 <form
+              
                     onSubmit={signInEmail}
                     className="flex flex-col gap-4">
                     {/* { error} */}

@@ -19,7 +19,8 @@ export function NoteList({ value, notes, category }) {
 
   const user = authUser
 
-  // console.log(user.uid)
+  console.log("use",user)
+ 
 
 
   useEffect(() => {
@@ -39,9 +40,12 @@ export function NoteList({ value, notes, category }) {
   return (
     <div className={styles.note_list}>
 
-      { (user) &&
+      {  (!user)? (
+      <p>No hay notas disponibles.</p>
+    ) : (
         noteList?.map((note) => (
-          (user.uid === note.user.uid) && <Note
+          (user && note.user && user.uid === note.user.uid) && (
+          <Note
             key={note.id}
             id={note.id}
             title={note.title}
@@ -49,8 +53,8 @@ export function NoteList({ value, notes, category }) {
             displayName={note.user.displayName}
             uid={note.user}
             category={category}
-          />
-
+          />)
+        )
         ))
       
        
@@ -62,20 +66,17 @@ export function NoteList({ value, notes, category }) {
 
 export const getServerSideProps = async (context) => {
 
-  // const {   currentUserInfo  } = useAuth();
   const user = currentUserInfo()
   const collectionRef = collection(db, "notes")
   const q = query(collectionRef, orderBy("date", "desc"));
   const querySnapshot = await getDocs(q)
   const docs = []
   querySnapshot.forEach((doc) => {
-    // if (user.uid === doc.data().user.uid) return;
     docs.push({ ...doc.data(), id: doc.id, date: doc.date })
   })
   return {
     props: {
       todosProps: JSON.stringify(docs) || [],
     }
-    // props: { session: `Your email is ${email} and your UID is ${uid}.` },
   };
 }
