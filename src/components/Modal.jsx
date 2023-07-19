@@ -41,7 +41,7 @@ export function Modal({isVisible, note,  onSave,  onChange, deleteNoteId, }) {
                 />
 
               </button>
-              <button id='close' onClick={onSave}>Cerrar</button>
+             
             </div>
           </div>
         </div>
