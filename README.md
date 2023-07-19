@@ -40,6 +40,8 @@ y cómo cada cambio sobre el estado se va a ir reflejando en la interfaz (por
 ejemplo, cada vez que agregamos una _nota_, la interfaz debe actualizar la lista
 de notas).
 
+![Getting Started](./public/assets/labnote%202.png)
+
 ## 3. Objetivos de Aprendizaje
 
 Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en tu proyecto. Piensa en eso al decidir tu estrategia de trabajo.
