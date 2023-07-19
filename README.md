@@ -15,28 +15,9 @@
 
 ## 1. Preámbulo
 
-Hoy en día no es práctico imaginar el desarrollo web sin HTML, CSS y JavaScript,
-esta última es el alma del desarrollo de aplicaciones web.
-[React](https://reactjs.org/) y [Angular](https://angular.io/)
-son algunos de los _frameworks_ y _librerías_ de JavaScript más utilizados por
-lxs desarrolladorxs alrededor del mundo, y hay una razón para eso.
-En el contexto del navegador, [_mantener la interfaz sincronizada con el estado
-es difícil_](https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445).
-Al elegir un _framework_ o _librería_ para nuestra interfaz, nos apoyamos en una
-serie de convenciones e implementaciones _probadas_ y _documentadas_ para
-resolver un problema común a toda interfaz web. Esto nos permite concentrarnos
-mejor (dedicar más tiempo) en las características _específicas_ de
-nuestra aplicación.
+LabNote es una aplicacion para agregar notas, y tenerlas a la mano cuando las necesites.
 
-Cuando elegimos una de estas tecnologías no solo importamos un pedacito de
-código para reusar (lo cual es un gran valor per se), si no que adoptamos una
-**arquitectura**, una serie de **principios de diseño**, un **paradigma**, unas
-**abstracciones**, un **vocabulario**, una **comunidad**, etc.
-
-Como desarrolladora front-end, estos kits de desarrollo pueden resultarte
-de gran ayuda para implementar rápidamente características de los proyectos en
-los que trabajes.
-
+![Getting Started](./public/assets/women-smile.jpg)
 ## 2. Resumen del Proyecto
 
 En este proyecto construiremos una aplicación para tomar notas, que nos permita
@@ -49,7 +30,7 @@ utilizamos libretas o agendas que terminan siendo olvidadas, o anotamos de
 manera dispersa de tal manera que perdemos de vista la prioridad y el propósito
 de la nota lo cual da como resultado una nota perdida.
 
-![Shows CRUD functionalities](https://raw.githubusercontent.com/florenciasilva/lab-notes/master/demo-crud.gif?token=AGJBHNTVAQRWOVF2IGMP6FK5NVFAS)
+![Getting Started](./public/assets/Lab%20note.png)
 
 El objetivo principal de este proyecto es aprender a construir una _interfaz
 web_ usando el _framework_ elegido. Todos estos frameworks de Frontend atacan el
